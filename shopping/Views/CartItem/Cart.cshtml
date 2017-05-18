@@ -1,0 +1,36 @@
+﻿@using shopping.Models;
+@model List<Cartitem>
+@{
+    ViewBag.Title = "Giỏ hàng của bạn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-sm-9">
+    <h2 class="textTransform">Giỏ hàng của bạn</h2>
+    <table class="table table-striped">
+        <tr>
+            <td>Mã sách</td>
+            <td>Tên sách</td>
+            <td>Ảnh</td>
+            <td>Đơn giá</td>
+            <td>Số lượng</td>
+            <td>Thành tiền</td>
+        </tr>
+        @{
+            foreach (var item in Model)
+            {
+                
+                <tr>
+                    <td>@item.book_Id</td>
+                    <td class="textTransform">@item.book_Name</td>
+                    <td>
+                        <img src="~/Content/fontEnd/images/book/@item.book_Image" width="50" height="50" />
+                    </td>
+                    <td>@item.book_Price</td>
+                    <td>@item.book_Quantity</td>
+                    <td>@item.total_Money</td>
+                </tr>
+            }
+
+        }
+    </table>
+</div>

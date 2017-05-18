@@ -11,13 +11,31 @@
                     </div>
 
                 </div>
-                <div class="text-center textTransform">
-                    <a href="@Url.Action("Details", "Book", new { @id = item.book_Id })">@item.book_Title</a>
-                </div>
+
                 <div class="choose">
-                    <ul class="nav nav-pills nav-justified">
-                        <li><a href="#"><i class="fa fa-plus-square"></i>Thêm vào giỏ hàng</a></li>
-                        <li><a href="#"><i class="fa fa-plus-square"></i>Giá: @item.book_Price</a></li>
+                    <ul style="padding:0">
+                        <li style="text-transform:capitalize;font-weight:bold;text-align:center;">
+                            <a href="@Url.Action("Details", "Book", new { @id = item.book_Id })">@item.book_Title</a>
+
+                        </li>
+                        <li class="textTransform">
+                            <a href="#">
+                                <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                                Tác giả:
+                                @{
+        foreach (var author in item.Authors)
+        {
+            @author.author_Name
+        }
+                                }
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                                Giá: @String.Format("{0:0,0}", @item.book_Price) VND
+                            </a>
+                        </li>
                     </ul>
 
                 </div>

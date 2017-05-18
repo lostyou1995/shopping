@@ -20,12 +20,12 @@
             <div class="product-information">
                 <!--/product-information-->
                 <h2 class="textTransform">@Html.DisplayFor(model => model.book_Title)</h2>
-                <span>
-                    <span>@Html.DisplayFor(model => model.book_Price)</span>
-                    <label>Số Lượng:</label>
-                    <input type="text" value="3">
+                
+                    <p class="textTransform">
+                        <b>Giá bán : </b>
+                       @String.Format("{0:0,0}", Model.book_Price) VND
 
-                </span>
+                    </p>
                 <p class="textTransform">
                     <b>Tác giả: </b>@{
                         foreach (var author in Model.Authors)
@@ -40,10 +40,13 @@
                 <p class="textTransform"><b>Năm xuất bản : </b> @Html.DisplayFor(model => model.book_Year)</p>
                 <p>
                     <b>
-                        <button type="button" class="btn btn-fefault cart">
+                        @using (Html.BeginForm("AddCartitem", "CartItem", new { @id = @Html.DisplayFor(model => model.book_Id), @url = Request.Url.ToString() }))
+                        { 
+                        <button type="submit" class="btn btn-fefault cart">
                             <i class="fa fa-shopping-cart"></i>
                             Thêm vào giỏ hàng
                         </button>
+                        }
                     </b>
                 </p>
             </div><!--/product-information-->
