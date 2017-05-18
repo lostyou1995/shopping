@@ -22,6 +22,7 @@ namespace shopping.Models
     
         public int category_Id { get; set; }
         public string category_Name { get; set; }
+        public string category_Slug { get; set; }
     
         public virtual ICollection<Book> Books { get; set; }
         public virtual ICollection<Sub_Category> Sub_Category { get; set; }

@@ -20,7 +20,8 @@ namespace shopping.Models
         }
     
         public int publisher_Id { get; set; }
-        public string publisher_name { get; set; }
+        public string publisher_Name { get; set; }
+        public string publisher_Slug { get; set; }
     
         public virtual ICollection<Book> Books { get; set; }
     }

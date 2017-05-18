@@ -7,7 +7,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4512C02E-DF92-40CE-96FB-9F3BA7886AE2}</ProjectGuid>
+    <ProjectGuid>{C7356634-F751-4E29-B6C3-B8EE4A7C8909}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -43,6 +43,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -158,25 +160,170 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BookController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Account.cs">
+      <DependentUpon>Book.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountGroup.cs">
+      <DependentUpon>Book.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Author.cs">
+      <DependentUpon>Book.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Book.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Book.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Book.cs">
+      <DependentUpon>Book.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Book.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Book.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Book1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Book.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Category.cs">
+      <DependentUpon>Book.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer.cs">
+      <DependentUpon>Book.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Group.cs">
+      <DependentUpon>Book.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GroupPath.cs">
+      <DependentUpon>Book.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>Book.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Orderdetail.cs">
+      <DependentUpon>Book.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Path.cs">
+      <DependentUpon>Book.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Publisher.cs">
+      <DependentUpon>Book.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sub_Category.cs">
+      <DependentUpon>Book.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>Book.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fontEnd\css\animate.css" />
+    <Content Include="Content\fontEnd\css\bootstrap.min.css" />
+    <Content Include="Content\fontEnd\css\font-awesome.min.css" />
+    <Content Include="Content\fontEnd\css\main.css" />
+    <Content Include="Content\fontEnd\css\prettyPhoto.css" />
+    <Content Include="Content\fontEnd\css\price-range.css" />
+    <Content Include="Content\fontEnd\css\responsive.css" />
+    <Content Include="Content\fontEnd\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fontEnd\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fontEnd\images\404\404.png" />
+    <Content Include="Content\fontEnd\images\blog\blog-one.jpg" />
+    <Content Include="Content\fontEnd\images\blog\blog-three.jpg" />
+    <Content Include="Content\fontEnd\images\blog\blog-two.jpg" />
+    <Content Include="Content\fontEnd\images\blog\man-four.jpg" />
+    <Content Include="Content\fontEnd\images\blog\man-one.jpg" />
+    <Content Include="Content\fontEnd\images\blog\man-three.jpg" />
+    <Content Include="Content\fontEnd\images\blog\man-two.jpg" />
+    <Content Include="Content\fontEnd\images\blog\socials.png" />
+    <Content Include="Content\fontEnd\images\book\sach.jpg" />
+    <Content Include="Content\fontEnd\images\cart\one.png" />
+    <Content Include="Content\fontEnd\images\cart\three.png" />
+    <Content Include="Content\fontEnd\images\cart\two.png" />
+    <Content Include="Content\fontEnd\images\home\banner\banner_1.jpg" />
+    <Content Include="Content\fontEnd\images\home\banner\banner_2.jpg" />
+    <Content Include="Content\fontEnd\images\home\banner\banner_3.jpg" />
+    <Content Include="Content\fontEnd\images\home\banner\banner_4.jpg" />
+    <Content Include="Content\fontEnd\images\home\banner\banner_5.jpg" />
+    <Content Include="Content\fontEnd\images\home\bg_border.png" />
+    <Content Include="Content\fontEnd\images\home\gallery1.jpg" />
+    <Content Include="Content\fontEnd\images\home\gallery2.jpg" />
+    <Content Include="Content\fontEnd\images\home\gallery3.jpg" />
+    <Content Include="Content\fontEnd\images\home\gallery4.jpg" />
+    <Content Include="Content\fontEnd\images\home\girl1.jpg" />
+    <Content Include="Content\fontEnd\images\home\girl2.jpg" />
+    <Content Include="Content\fontEnd\images\home\girl3.jpg" />
+    <Content Include="Content\fontEnd\images\home\iframe1.png" />
+    <Content Include="Content\fontEnd\images\home\iframe2.png" />
+    <Content Include="Content\fontEnd\images\home\iframe3.png" />
+    <Content Include="Content\fontEnd\images\home\iframe4.png" />
+    <Content Include="Content\fontEnd\images\home\logo.png" />
+    <Content Include="Content\fontEnd\images\home\map.png" />
+    <Content Include="Content\fontEnd\images\home\new.png" />
+    <Content Include="Content\fontEnd\images\home\partner1.png" />
+    <Content Include="Content\fontEnd\images\home\partner2.png" />
+    <Content Include="Content\fontEnd\images\home\partner3.png" />
+    <Content Include="Content\fontEnd\images\home\partner4.png" />
+    <Content Include="Content\fontEnd\images\home\pricing.png" />
+    <Content Include="Content\fontEnd\images\home\product1.jpg" />
+    <Content Include="Content\fontEnd\images\home\product2.jpg" />
+    <Content Include="Content\fontEnd\images\home\product3.jpg" />
+    <Content Include="Content\fontEnd\images\home\product4.jpg" />
+    <Content Include="Content\fontEnd\images\home\product5.jpg" />
+    <Content Include="Content\fontEnd\images\home\product6.jpg" />
+    <Content Include="Content\fontEnd\images\home\recommend1.jpg" />
+    <Content Include="Content\fontEnd\images\home\recommend2.jpg" />
+    <Content Include="Content\fontEnd\images\home\recommend3.jpg" />
+    <Content Include="Content\fontEnd\images\home\sale.png" />
+    <Content Include="Content\fontEnd\images\home\searchicon.png" />
+    <Content Include="Content\fontEnd\images\home\shipping.jpg" />
+    <Content Include="Content\fontEnd\js\bootstrap.min.js" />
+    <Content Include="Content\fontEnd\js\contact.js" />
+    <Content Include="Content\fontEnd\js\gmaps.js" />
+    <Content Include="Content\fontEnd\js\html5shiv.js" />
+    <Content Include="Content\fontEnd\js\jquery.js" />
+    <Content Include="Content\fontEnd\js\jquery.prettyPhoto.js" />
+    <Content Include="Content\fontEnd\js\jquery.scrollUp.min.js" />
+    <Content Include="Content\fontEnd\js\main.js" />
+    <Content Include="Content\fontEnd\js\price-range.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\fontEnd\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fontEnd\fonts\FontAwesome.otf" />
+    <Content Include="Content\fontEnd\fonts\glyphicons-halflings-regular.woff" />
+    <EntityDeploy Include="Models\Book.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Book.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Book.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Book.edmx</DependentUpon>
+      <LastGenOutput>Book.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Book.edmx.diagram">
+      <DependentUpon>Book.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Book.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Book.edmx</DependentUpon>
+      <LastGenOutput>Book1.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -189,7 +336,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -200,20 +349,23 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\CategoryPartial.cshtml" />
+    <Content Include="Views\Home\ProductPartial.cshtml" />
+    <Content Include="Views\Book\Create.cshtml" />
+    <Content Include="Views\Book\Delete.cshtml" />
+    <Content Include="Views\Book\Details.cshtml" />
+    <Content Include="Views\Book\Edit.cshtml" />
+    <Content Include="Views\Book\Index.cshtml" />
+    <Content Include="Views\Book\BookPartial.cshtml" />
+    <Content Include="Views\Category\Create.cshtml" />
+    <Content Include="Views\Category\Delete.cshtml" />
+    <Content Include="Views\Category\Details.cshtml" />
+    <Content Include="Views\Category\Edit.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\RecommendCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -224,6 +376,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -241,9 +396,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>36508</DevelopmentServerPort>
+          <DevelopmentServerPort>16914</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:36508/</IISUrl>
+          <IISUrl>http://localhost:16914/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

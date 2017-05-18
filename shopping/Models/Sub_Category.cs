@@ -17,6 +17,7 @@ namespace shopping.Models
         public int subcategory_Id { get; set; }
         public string subcategory_Name { get; set; }
         public Nullable<int> parent_CategoryId { get; set; }
+        public string subcategory_Slug { get; set; }
     
         public virtual Category Category { get; set; }
     }

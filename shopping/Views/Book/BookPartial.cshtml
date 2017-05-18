@@ -1,0 +1,28 @@
+﻿@using shopping.Models
+@{
+    foreach (var item in Model)
+    {
+        <div class="col-sm-4">
+            <div class="product-image-wrapper">
+                <div class="single-products">
+                    <div class="productinfo text-center">
+
+                        <img src="~/Content/fontEnd/images/book/@item.book_Image" />
+                    </div>
+
+                </div>
+                <div class="text-center textTransform">
+                    <a href="@Url.Action("Details", "Book", new { @id = item.book_Id })">@item.book_Title</a>
+                </div>
+                <div class="choose">
+                    <ul class="nav nav-pills nav-justified">
+                        <li><a href="#"><i class="fa fa-plus-square"></i>Thêm vào giỏ hàng</a></li>
+                        <li><a href="#"><i class="fa fa-plus-square"></i>Giá: @item.book_Price</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+    }
+}

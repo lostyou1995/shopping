@@ -21,8 +21,7 @@ namespace shopping.Models
     
         public int author_Id { get; set; }
         public string author_Name { get; set; }
-        public string author_Address { get; set; }
-        public string author_Story { get; set; }
+        public string author_Slug { get; set; }
     
         public virtual ICollection<Book> Books { get; set; }
     }
