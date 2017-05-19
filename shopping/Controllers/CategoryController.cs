@@ -125,7 +125,7 @@ namespace shopping.Controllers
         }
         public ActionResult RecommendCategory(int id)
         {
-            var model = db.Categories.Find(id);
+            var model = db.Sub_Category.Find(id);
             return View(model.Books.ToList());
         }
     }

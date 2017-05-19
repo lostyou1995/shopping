@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="col-sm-9">
-    <h2 class="textTransform">Giỏ hàng của bạn</h2>
+    <h2 class="title text-center">Giỏ hàng của bạn</h2>
     <table class="table table-striped">
         <tr>
             <td>Mã sách</td>
@@ -25,9 +25,9 @@
                     <td>
                         <img src="~/Content/fontEnd/images/book/@item.book_Image" width="50" height="50" />
                     </td>
-                    <td>@item.book_Price</td>
+                    <td>@String.Format("{0:0,0}",@item.book_Price)</td>
                     <td>@item.book_Quantity</td>
-                    <td>@item.total_Money</td>
+                    <td>@String.Format("{0:0,0}", @item.total_Money)</td>
                 </tr>
             }
 

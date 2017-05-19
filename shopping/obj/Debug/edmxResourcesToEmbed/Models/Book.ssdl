@@ -46,7 +46,7 @@
     <Property Name="book_Quantity" Type="int" />
     <Property Name="book_Image" Type="nvarchar" MaxLength="50" />
     <Property Name="book_Year" Type="int" />
-    <Property Name="category_Id" Type="int" />
+    <Property Name="subcategory_Id" Type="int" />
     <Property Name="publisher_Id" Type="int" />
     <Property Name="book_Slug" Type="nvarchar" MaxLength="250" />
   </EntityType>
@@ -201,18 +201,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Book_Category">
-    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
-    <End Role="Book" Type="Self.Book" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Category">
-        <PropertyRef Name="category_Id" />
-      </Principal>
-      <Dependent Role="Book">
-        <PropertyRef Name="category_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Book_Publisher">
     <End Role="Publisher" Type="Self.Publisher" Multiplicity="0..1" />
     <End Role="Book" Type="Self.Book" Multiplicity="*" />
@@ -222,6 +210,18 @@
       </Principal>
       <Dependent Role="Book">
         <PropertyRef Name="publisher_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Book_Sub_Category">
+    <End Role="Sub_Category" Type="Self.Sub_Category" Multiplicity="0..1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sub_Category">
+        <PropertyRef Name="subcategory_Id" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="subcategory_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -329,12 +329,12 @@
       <End Role="Book" EntitySet="Book" />
       <End Role="Book_Author" EntitySet="Book_Author" />
     </AssociationSet>
-    <AssociationSet Name="FK_Book_Category" Association="Self.FK_Book_Category">
-      <End Role="Category" EntitySet="Category" />
-      <End Role="Book" EntitySet="Book" />
-    </AssociationSet>
     <AssociationSet Name="FK_Book_Publisher" Association="Self.FK_Book_Publisher">
       <End Role="Publisher" EntitySet="Publisher" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Book_Sub_Category" Association="Self.FK_Book_Sub_Category">
+      <End Role="Sub_Category" EntitySet="Sub_Category" />
       <End Role="Book" EntitySet="Book" />
     </AssociationSet>
     <AssociationSet Name="FK_GroupPath_Group" Association="Self.FK_GroupPath_Group">

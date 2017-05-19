@@ -49,7 +49,7 @@
           <ScalarProperty Name="book_Quantity" ColumnName="book_Quantity" />
           <ScalarProperty Name="book_Image" ColumnName="book_Image" />
           <ScalarProperty Name="book_Year" ColumnName="book_Year" />
-          <ScalarProperty Name="category_Id" ColumnName="category_Id" />
+          <ScalarProperty Name="subcategory_Id" ColumnName="subcategory_Id" />
           <ScalarProperty Name="publisher_Id" ColumnName="publisher_Id" />
           <ScalarProperty Name="book_Slug" ColumnName="book_Slug" />
         </MappingFragment>

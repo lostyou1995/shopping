@@ -189,11 +189,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Book.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Book1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Book.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Cartitem.cs" />
     <Compile Include="Models\Category.cs">
       <DependentUpon>Book.tt</DependentUpon>
@@ -250,6 +245,11 @@
     <Content Include="Content\fontEnd\images\blog\man-three.jpg" />
     <Content Include="Content\fontEnd\images\blog\man-two.jpg" />
     <Content Include="Content\fontEnd\images\blog\socials.png" />
+    <Content Include="Content\fontEnd\images\book\251404_p74201mimg685.jpg" />
+    <Content Include="Content\fontEnd\images\book\253097_p75100mbiatruoc.jpg" />
+    <Content Include="Content\fontEnd\images\book\255126_p75262mscan0001.jpg" />
+    <Content Include="Content\fontEnd\images\book\255479_p75486mbiatruoc.jpg" />
+    <Content Include="Content\fontEnd\images\book\256975_p75645mscan0001.jpg" />
     <Content Include="Content\fontEnd\images\book\sach.jpg" />
     <Content Include="Content\fontEnd\images\cart\one.png" />
     <Content Include="Content\fontEnd\images\cart\three.png" />

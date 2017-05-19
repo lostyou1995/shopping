@@ -17,18 +17,12 @@ namespace shopping.Controllers
         // GET: /Book/
         public ActionResult Index()
         {
-            var books = db.Books.Include(b => b.Category).Include(b => b.Publisher);
+            var books = db.Books.Include(b => b.Sub_Category).Include(b => b.Publisher);
             return View(books.ToList());
         }
 
-        public ActionResult BookPartial()
-        {
-            var book = db.Books.ToList();
-            return PartialView(book);
-        }
-
         // GET: /Book/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id,string slug)
         {
             if (id == null)
             {
@@ -64,7 +58,7 @@ namespace shopping.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.category_Id = new SelectList(db.Categories, "category_Id", "category_Name", book.category_Id);
+            ViewBag.category_Id = new SelectList(db.Categories, "category_Id", "category_Name", book.subcategory_Id);
             ViewBag.publisher_Id = new SelectList(db.Publishers, "publisher_Id", "publisher_Name", book.publisher_Id);
             return View(book);
         }
@@ -81,7 +75,7 @@ namespace shopping.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.category_Id = new SelectList(db.Categories, "category_Id", "category_Name", book.category_Id);
+            ViewBag.category_Id = new SelectList(db.Categories, "category_Id", "category_Name", book.subcategory_Id);
             ViewBag.publisher_Id = new SelectList(db.Publishers, "publisher_Id", "publisher_Name", book.publisher_Id);
             return View(book);
         }
@@ -99,7 +93,7 @@ namespace shopping.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.category_Id = new SelectList(db.Categories, "category_Id", "category_Name", book.category_Id);
+            ViewBag.category_Id = new SelectList(db.Categories, "category_Id", "category_Name", book.subcategory_Id);
             ViewBag.publisher_Id = new SelectList(db.Publishers, "publisher_Id", "publisher_Name", book.publisher_Id);
             return View(book);
         }
@@ -137,6 +131,10 @@ namespace shopping.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public ActionResult BookPartial()
+        {
+            return PartialView(db.Books.ToList());
         }
     }
 }

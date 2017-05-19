@@ -14,11 +14,17 @@ namespace shopping.Models
     
     public partial class Sub_Category
     {
+        public Sub_Category()
+        {
+            this.Books = new HashSet<Book>();
+        }
+    
         public int subcategory_Id { get; set; }
         public string subcategory_Name { get; set; }
         public Nullable<int> parent_CategoryId { get; set; }
         public string subcategory_Slug { get; set; }
     
+        public virtual ICollection<Book> Books { get; set; }
         public virtual Category Category { get; set; }
     }
 }
