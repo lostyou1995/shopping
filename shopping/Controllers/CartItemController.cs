@@ -55,10 +55,20 @@ namespace shopping.Controllers
             List<Cartitem> listCartitem = GetCartitem();
             Cartitem product = listCartitem.SingleOrDefault(n => n.book_Id == id);
             if (product != null)
-            { 
-                product.book_Quantity=int.Parse(q["txtQuantity"].ToString());
+            {
+                    product.book_Quantity = int.Parse(q["txtQuantity"].ToString());
             }
-            return View("Cart");
+            return RedirectToAction("Cart");
+        }
+        //edit cart item
+        public ActionResult EditCartitem()
+        {
+            if(Session["Cartitems"]==null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            List<Cartitem> listCartitem = GetCartitem();
+            return View(listCartitem);
         }
         //delete Cart item
         public ActionResult DeleteCartitem(int id)
@@ -122,6 +132,45 @@ namespace shopping.Controllers
             ViewBag.TotalNumber = TotalQuantity();
             ViewBag.TotalMoney = TotalMoney();
             return PartialView();
+        }
+        [HttpPost]
+        public ActionResult BuyCart()
+        {
+            //check
+            if (Session["Cartitems"]==null)
+            {
+                RedirectToAction("Index", "Home");
+            }
+            ViewBag.Message = "";
+            //add order
+            Order ord = new Order();
+            Customer cus = new Customer();
+            //add customer
+            cus.customer_Fullname = Request.Form["customer_Fullname"];
+            cus.customer_Address=Request.Form["customer_Address"];
+            cus.customer_Phone = Request.Form["customer_Phone"];
+            cus.customer_Email = Request.Form["customer_Email"];
+            db.Customers.Add(cus);
+            db.SaveChanges();
+            //add order
+            ord.customer_Id=cus.customer_Id;
+            ord.order_Datetime=DateTime.Now;
+            ord.order_Status=0;
+            db.Orders.Add(ord);
+            db.SaveChanges();
+            List<Cartitem> listcartitem = GetCartitem();
+            foreach (var item in listcartitem)
+            {
+                Orderdetail ordetails = new Orderdetail();
+                ordetails.details_Id = ord.detail_Id;
+                ordetails.orderdetail_book_Id = item.book_Id;
+                ordetails.orderdetail_Quantity = item.book_Quantity;
+                ordetails.orderdetail_Total = item.total_Money;
+                ordetails.orderdetail_Price = item.book_Price;
+                db.Orderdetails.Add(ordetails);
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index","Home");
         }
 	}
 }

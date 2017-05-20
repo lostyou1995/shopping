@@ -97,11 +97,10 @@
     <EntitySetMapping Name="Orders">
       <EntityTypeMapping TypeName="shopModel.Order">
         <MappingFragment StoreEntitySet="Order">
-          <ScalarProperty Name="orderdetail_Id" ColumnName="orderdetail_Id" />
+          <ScalarProperty Name="detail_Id" ColumnName="detail_Id" />
           <ScalarProperty Name="customer_Id" ColumnName="customer_Id" />
           <ScalarProperty Name="order_Datetime" ColumnName="order_Datetime" />
           <ScalarProperty Name="order_Status" ColumnName="order_Status" />
-          <ScalarProperty Name="user_Id" ColumnName="user_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -113,6 +112,7 @@
           <ScalarProperty Name="orderdetail_Quantity" ColumnName="orderdetail_Quantity" />
           <ScalarProperty Name="orderdetail_Price" ColumnName="orderdetail_Price" />
           <ScalarProperty Name="orderdetail_Total" ColumnName="orderdetail_Total" />
+          <ScalarProperty Name="details_Id" ColumnName="details_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

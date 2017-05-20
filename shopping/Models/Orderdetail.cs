@@ -19,6 +19,7 @@ namespace shopping.Models
         public Nullable<int> orderdetail_Quantity { get; set; }
         public Nullable<int> orderdetail_Price { get; set; }
         public Nullable<int> orderdetail_Total { get; set; }
+        public Nullable<int> details_Id { get; set; }
     
         public virtual Book Book { get; set; }
         public virtual Order Order { get; set; }

@@ -7,7 +7,10 @@
 @import url(http://fonts.googleapis.com/css?family=Abel);
 /*Edit*/
 
-
+/*Error*/
+.field-validation-error{
+    color:red;
+}
 body {
   font-family: 'Roboto', sans-serif;
   background:;
@@ -2560,7 +2563,8 @@ h2.title {
 }
 
 .social-networks ul li a {
-  color: #999;
+  color:black;
+  font-weight:bold;
   font-size: 25px;
 }
 
@@ -2570,6 +2574,21 @@ h2.title {
 
 .contact-info .social-networks ul li a:hover{
   color: #5dbb45;
+}
+.navbar-inverse
+{
+    background-color: #5dbb45;
+    border-color: #5dbb45;
+}
+.navbar-inverse .navbar-nav>li>a
+{
+    color:black;
+    font-weight:bold;
+}
+.navbar-inverse .navbar-brand{
+    color:black;
+        font-weight:bold;
+
 }
 
 

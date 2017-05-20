@@ -14,23 +14,61 @@
             <td>Đơn giá</td>
             <td>Số lượng</td>
             <td>Thành tiền</td>
+            <td>Hành động</td>
         </tr>
         @{
             foreach (var item in Model)
             {
-                
+
                 <tr>
                     <td>@item.book_Id</td>
-                    <td class="textTransform">@item.book_Name</td>
+                    <td class="textTransform"><a href="@Url.Action("Details", "Book", new { @id=@item.book_Id})">@item.book_Name</a></td>
                     <td>
                         <img src="~/Content/fontEnd/images/book/@item.book_Image" width="50" height="50" />
                     </td>
-                    <td>@String.Format("{0:0,0}",@item.book_Price)</td>
-                    <td>@item.book_Quantity</td>
+                    <td>@String.Format("{0:0,0}", @item.book_Price)</td>
+                    <td>
+                        @item.book_Quantity
+                    </td>
                     <td>@String.Format("{0:0,0}", @item.total_Money)</td>
+                    <td style="text-align:center">
+                        <a href="@Url.Action("EditCartitem", "CartItem")" title="Chỉnh sửa">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </a>
+                        <a href="@Url.Action("DeleteCartitem", "CartItem", new { @id=@item.book_Id})" title="Xóa" style="color:red;">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </a>
+                    </td>
                 </tr>
             }
-
         }
     </table>
+    <div>
+        <h2 class="title text-center">Thông tin đặt hàng</h2>
+        @using (Html.BeginForm("BuyCart", "CartItem"))
+        {
+            <div class="form-group">
+                <label for="hoTen" class="textTransform">Họ tên đầy đủ</label>
+                <input type="text" class="form-control" id="customer_Fullname" placeholder="Họ và tên" name="customer_Fullname" onblur="fullname()">
+                <div style="color:red" id="fullname" class="textTransform"></div>
+            </div>
+            <div class="form-group">
+                <label for="hoTen" class="textTransform">Địa chỉ</label>
+                <input type="text" class="form-control" id="customer_Address" placeholder="Địa chỉ" name="customer_Address" onblur="address()">
+                <div style="color:red" id="address" class="textTransform"></div>
+            </div>
+            <div class="form-group">
+                <label for="hoTen" class="textTransform">số điện thoại</label>
+                <input type="number" class="form-control" id="customer_Phone" placeholder="Số điện thoại" name="customer_Phone" onblur="phone()">
+                <div style="color:red" id="phone" class="textTransform"></div>
+            </div>
+            <div class="form-group">
+                <label for="hoTen" class="textTransform">email</label>
+                <input type="email" class="form-control" id="customer_Email" placeholder="Địa chỉ Email" name="customer_Email" onblur="email()">
+                <div style="color:red" id="email" class="textTransform"></div>
+            </div>
+            <input type="submit" value="Đặt hàng" class="btn btn-success" id="btnSubmit" disabled="disabled"/>
+        }
+        <script src="~/Content/fontEnd/myscript/myScript.js"></script>
+    </div>
 </div>

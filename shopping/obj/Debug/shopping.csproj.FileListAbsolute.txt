@@ -108,3 +108,7 @@ C:\Users\ngocp\Desktop\New folder\shopping\shopping\bin\Microsoft.Owin.Security.
 C:\Users\ngocp\Desktop\New folder\shopping\shopping\obj\Debug\shopping.csprojResolveAssemblyReference.cache
 C:\Users\ngocp\Desktop\New folder\shopping\shopping\obj\Debug\shopping.dll
 C:\Users\ngocp\Desktop\New folder\shopping\shopping\obj\Debug\shopping.pdb
+C:\Users\ngocp\Desktop\New folder\shopping\shopping\bin\PagedList.dll
+C:\Users\ngocp\Desktop\New folder\shopping\shopping\bin\PagedList.Mvc.dll
+C:\Users\ngocp\Desktop\New folder\shopping\shopping\bin\PagedList.xml
+C:\Users\ngocp\Desktop\New folder\shopping\shopping\bin\PagedList.Mvc.xml

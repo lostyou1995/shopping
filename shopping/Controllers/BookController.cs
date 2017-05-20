@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using shopping.Models;
-
+using PagedList;
 namespace shopping.Controllers
 {
     public class BookController : Controller
@@ -134,7 +134,8 @@ namespace shopping.Controllers
         }
         public ActionResult BookPartial()
         {
-            return PartialView(db.Books.ToList());
+            var book = db.Books.ToList();
+            return PartialView(book);
         }
     }
 }

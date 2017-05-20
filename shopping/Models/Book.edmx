@@ -78,7 +78,7 @@
           <Property Name="customer_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="customer_Fullname" Type="nvarchar" MaxLength="50" />
           <Property Name="customer_Address" Type="nvarchar" MaxLength="150" />
-          <Property Name="customer_Phone" Type="int" />
+          <Property Name="customer_Phone" Type="nvarchar" MaxLength="11" />
           <Property Name="customer_Email" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Group">
@@ -100,13 +100,12 @@
         </EntityType>
         <EntityType Name="Order">
           <Key>
-            <PropertyRef Name="orderdetail_Id" />
+            <PropertyRef Name="detail_Id" />
           </Key>
-          <Property Name="orderdetail_Id" Type="int" Nullable="false" />
+          <Property Name="detail_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="customer_Id" Type="int" Nullable="false" />
           <Property Name="order_Datetime" Type="datetime" />
           <Property Name="order_Status" Type="bigint" />
-          <Property Name="user_Id" Type="int" />
         </EntityType>
         <EntityType Name="Orderdetail">
           <Key>
@@ -117,6 +116,7 @@
           <Property Name="orderdetail_Quantity" Type="int" />
           <Property Name="orderdetail_Price" Type="int" />
           <Property Name="orderdetail_Total" Type="int" />
+          <Property Name="details_Id" Type="int" />
         </EntityType>
         <EntityType Name="Path">
           <Key>
@@ -279,14 +279,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Orderdetail_Order">
-          <End Role="Order" Type="Self.Order" Multiplicity="1" />
-          <End Role="Orderdetail" Type="Self.Orderdetail" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="Orderdetail" Type="Self.Orderdetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Order">
-              <PropertyRef Name="orderdetail_Id" />
+              <PropertyRef Name="detail_Id" />
             </Principal>
             <Dependent Role="Orderdetail">
-              <PropertyRef Name="orderdetail_Id" />
+              <PropertyRef Name="details_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -446,7 +446,7 @@
           <Property Name="customer_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="customer_Fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="customer_Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="customer_Phone" Type="Int32" />
+          <Property Name="customer_Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
           <Property Name="customer_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
         </EntityType>
@@ -473,15 +473,14 @@
         </EntityType>
         <EntityType Name="Order">
           <Key>
-            <PropertyRef Name="orderdetail_Id" />
+            <PropertyRef Name="detail_Id" />
           </Key>
-          <Property Name="orderdetail_Id" Type="Int32" Nullable="false" />
+          <Property Name="detail_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="customer_Id" Type="Int32" Nullable="false" />
           <Property Name="order_Datetime" Type="DateTime" Precision="3" />
           <Property Name="order_Status" Type="Int64" />
-          <Property Name="user_Id" Type="Int32" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
-          <NavigationProperty Name="Orderdetail" Relationship="Self.FK_Orderdetail_Order" FromRole="Order" ToRole="Orderdetail" />
+          <NavigationProperty Name="Orderdetails" Relationship="Self.FK_Orderdetail_Order" FromRole="Order" ToRole="Orderdetail" />
         </EntityType>
         <EntityType Name="Orderdetail">
           <Key>
@@ -492,6 +491,7 @@
           <Property Name="orderdetail_Quantity" Type="Int32" />
           <Property Name="orderdetail_Price" Type="Int32" />
           <Property Name="orderdetail_Total" Type="Int32" />
+          <Property Name="details_Id" Type="Int32" />
           <NavigationProperty Name="Book" Relationship="Self.FK_Orderdetail_Book" FromRole="Orderdetail" ToRole="Book" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Orderdetail_Order" FromRole="Orderdetail" ToRole="Order" />
         </EntityType>
@@ -648,14 +648,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Orderdetail_Order">
-          <End Role="Order" Type="Self.Order" Multiplicity="1" />
-          <End Role="Orderdetail" Type="Self.Orderdetail" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="Orderdetail" Type="Self.Orderdetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Order">
-              <PropertyRef Name="orderdetail_Id" />
+              <PropertyRef Name="detail_Id" />
             </Principal>
             <Dependent Role="Orderdetail">
-              <PropertyRef Name="orderdetail_Id" />
+              <PropertyRef Name="details_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -825,11 +825,10 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="shopModel.Order">
               <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="orderdetail_Id" ColumnName="orderdetail_Id" />
+                <ScalarProperty Name="detail_Id" ColumnName="detail_Id" />
                 <ScalarProperty Name="customer_Id" ColumnName="customer_Id" />
                 <ScalarProperty Name="order_Datetime" ColumnName="order_Datetime" />
                 <ScalarProperty Name="order_Status" ColumnName="order_Status" />
-                <ScalarProperty Name="user_Id" ColumnName="user_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -841,6 +840,7 @@
                 <ScalarProperty Name="orderdetail_Quantity" ColumnName="orderdetail_Quantity" />
                 <ScalarProperty Name="orderdetail_Price" ColumnName="orderdetail_Price" />
                 <ScalarProperty Name="orderdetail_Total" ColumnName="orderdetail_Total" />
+                <ScalarProperty Name="details_Id" ColumnName="details_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8631bada21b14b6e9c13046b9010de1d" Name="Diagram1">
+      <Diagram DiagramId="7218cb73718c40d4a04c941f7d432e89" Name="Diagram1">
         <EntityTypeShape EntityType="shopModel.Account" Width="1.5" PointX="7.75" PointY="14.625" IsExpanded="true" />
         <EntityTypeShape EntityType="shopModel.AccountGroup" Width="1.5" PointX="10" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="shopModel.Author" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
@@ -13,7 +13,7 @@
         <EntityTypeShape EntityType="shopModel.Customer" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="shopModel.Group" Width="1.5" PointX="7.75" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="shopModel.GroupPath" Width="1.5" PointX="10" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopModel.Order" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopModel.Order" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="shopModel.Orderdetail" Width="1.5" PointX="7.5" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="shopModel.Path" Width="1.5" PointX="7.75" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="shopModel.Publisher" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />

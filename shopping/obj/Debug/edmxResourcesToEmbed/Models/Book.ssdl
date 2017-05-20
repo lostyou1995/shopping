@@ -73,7 +73,7 @@
     <Property Name="customer_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="customer_Fullname" Type="nvarchar" MaxLength="50" />
     <Property Name="customer_Address" Type="nvarchar" MaxLength="150" />
-    <Property Name="customer_Phone" Type="int" />
+    <Property Name="customer_Phone" Type="nvarchar" MaxLength="11" />
     <Property Name="customer_Email" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Group">
@@ -95,13 +95,12 @@
   </EntityType>
   <EntityType Name="Order">
     <Key>
-      <PropertyRef Name="orderdetail_Id" />
+      <PropertyRef Name="detail_Id" />
     </Key>
-    <Property Name="orderdetail_Id" Type="int" Nullable="false" />
+    <Property Name="detail_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="customer_Id" Type="int" Nullable="false" />
     <Property Name="order_Datetime" Type="datetime" />
     <Property Name="order_Status" Type="bigint" />
-    <Property Name="user_Id" Type="int" />
   </EntityType>
   <EntityType Name="Orderdetail">
     <Key>
@@ -112,6 +111,7 @@
     <Property Name="orderdetail_Quantity" Type="int" />
     <Property Name="orderdetail_Price" Type="int" />
     <Property Name="orderdetail_Total" Type="int" />
+    <Property Name="details_Id" Type="int" />
   </EntityType>
   <EntityType Name="Path">
     <Key>
@@ -274,14 +274,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Orderdetail_Order">
-    <End Role="Order" Type="Self.Order" Multiplicity="1" />
-    <End Role="Orderdetail" Type="Self.Orderdetail" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="Orderdetail" Type="Self.Orderdetail" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Order">
-        <PropertyRef Name="orderdetail_Id" />
+        <PropertyRef Name="detail_Id" />
       </Principal>
       <Dependent Role="Orderdetail">
-        <PropertyRef Name="orderdetail_Id" />
+        <PropertyRef Name="details_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

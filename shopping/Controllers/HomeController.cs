@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using shopping.Models;
+using PagedList;
 namespace shopping.Controllers
 {
     public class HomeController : System.Web.Mvc.Controller
@@ -12,6 +13,7 @@ namespace shopping.Controllers
         public shopEntities shop = new shopEntities();
         public ActionResult Index()
         {
+    
             return View();
         }
         public ActionResult CategoryPartial()

@@ -40,6 +40,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -163,6 +169,7 @@
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\CartItemController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -245,8 +252,10 @@
     <Content Include="Content\fontEnd\images\blog\man-three.jpg" />
     <Content Include="Content\fontEnd\images\blog\man-two.jpg" />
     <Content Include="Content\fontEnd\images\blog\socials.png" />
+    <Content Include="Content\fontEnd\images\book\184971_p64231mimg946.jpg" />
     <Content Include="Content\fontEnd\images\book\251404_p74201mimg685.jpg" />
     <Content Include="Content\fontEnd\images\book\253097_p75100mbiatruoc.jpg" />
+    <Content Include="Content\fontEnd\images\book\253514_p75039mimg584.jpg" />
     <Content Include="Content\fontEnd\images\book\255126_p75262mscan0001.jpg" />
     <Content Include="Content\fontEnd\images\book\255479_p75486mbiatruoc.jpg" />
     <Content Include="Content\fontEnd\images\book\256975_p75645mscan0001.jpg" />
@@ -300,6 +309,8 @@
     <Content Include="Content\fontEnd\js\jquery.scrollUp.min.js" />
     <Content Include="Content\fontEnd\js\main.js" />
     <Content Include="Content\fontEnd\js\price-range.js" />
+    <Content Include="Content\fontEnd\myscript\myScript.js" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -370,6 +381,15 @@
     <Content Include="Views\Category\RecommendCategory.cshtml" />
     <Content Include="Views\CartItem\Cart.cshtml" />
     <Content Include="Views\CartItem\CartitemPartial.cshtml" />
+    <Content Include="Views\Category\FindCategory.cshtml" />
+    <Content Include="Views\Category\FindCategoryParent.cshtml" />
+    <Content Include="Views\CartItem\EditCartitem.cshtml" />
+    <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Customer\Delete.cshtml" />
+    <Content Include="Views\Customer\Details.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\CartItem\BuyCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
