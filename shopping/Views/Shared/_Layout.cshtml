@@ -3,15 +3,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Website bán sách</title>
     @*Css*@
     <link href="~/Content/fontEnd/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/fontEnd/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Content/fontEnd/css/prettyPhoto.css" rel="stylesheet" />
     <link href="~/Content/fontEnd/css/price-range.css" rel="stylesheet" />
     <link href="~/Content/fontEnd/css/animate.css" rel="stylesheet" />
-    <link href="~/Content/fontEnd/css/main.css" rel="stylesheet" />
     <link href="~/Content/fontEnd/css/responsive.css" rel="stylesheet" />
+    <link href="~/Content/fontEnd/css/main.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -31,7 +31,7 @@
                             <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
                         </ul>
                     </div>
-  
+
                 </div>
             </div>
         </div><!--/header_top-->
@@ -48,7 +48,31 @@
         <!--slider-->
         <div class="container">
             <div class="row">
-              
+                <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="@Url.Action("Index","Home")">Muasach.com</a>
+                        </div>
+                        <ul class="nav navbar-nav">
+                            <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                            <li><a href="#">Liên hệ</a></li>
+                            <li>
+                                <a href="@Url.Action("Cart","CartItem")">
+                                    Giỏ hàng @Html.Action("CartitemPartial", "CartItem")
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="navbar-form navbar-right">
+                            @using (Html.BeginForm())
+                            { <div class="form-group">
+                                @Html.TextBox("txtSearch", "", htmlAttributes: new { @class = "form-control", @placeholder = "tìm kiếm tên, thể loại, tác giả,..." })
+                            </div>
+                                <button type="submit" class="btn btn-default">Tìm kiếm</button>
+                            }
+
+                        </div>
+                    </div>
+                </nav>
             </div>
         </div>
     </section>
@@ -69,6 +93,7 @@
                     </div>
                 </div>
                 @RenderBody()
+            </div>
             </div>
     </section>
     <!--End Body-->
@@ -159,4 +184,13 @@
     @*<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647;"><i class="fa fa-angle-up"></i></a>*@
 
 </body>
+<div id="fb-root"></div>
+<script>
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 </html>

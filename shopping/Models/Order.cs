@@ -14,13 +14,17 @@ namespace shopping.Models
     
     public partial class Order
     {
-        public int orderdetail_Id { get; set; }
+        public Order()
+        {
+            this.Orderdetails = new HashSet<Orderdetail>();
+        }
+    
+        public int detail_Id { get; set; }
         public int customer_Id { get; set; }
         public Nullable<System.DateTime> order_Datetime { get; set; }
         public Nullable<long> order_Status { get; set; }
-        public Nullable<int> user_Id { get; set; }
     
         public virtual Customer Customer { get; set; }
-        public virtual Orderdetail Orderdetail { get; set; }
+        public virtual ICollection<Orderdetail> Orderdetails { get; set; }
     }
 }

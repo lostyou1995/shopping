@@ -125,8 +125,24 @@ namespace shopping.Controllers
         }
         public ActionResult RecommendCategory(int id)
         {
-            var model = db.Categories.Find(id);
-            return View(model.Books.ToList());
+            var recommend = db.Sub_Category.Find(id);
+            return View(recommend.Books.ToList());
+        }
+        public ActionResult FindCategory(int id,string slug)
+        {
+            var findCategory = db.Sub_Category.Find(id);
+            ViewBag.Title = findCategory.subcategory_Name.ToUpper();
+            return View(findCategory.Books.ToList());
+        }
+        public ActionResult FindCategoryParent(int id)
+        {
+            var findCategoryParent = (from book in db.Books
+                                     join subcate in db.Sub_Category on book.subcategory_Id equals subcate.subcategory_Id
+                                     join cate in db.Categories on subcate.parent_CategoryId equals cate.category_Id
+                                     where cate.category_Id == id
+                                     select book).ToList();
+            ViewBag.Title = db.Categories.Where(x => x.category_Id == id).Select(x => x.category_Name).SingleOrDefault().ToUpper();
+            return View(findCategoryParent);
         }
     }
 }

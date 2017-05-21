@@ -27,12 +27,12 @@ namespace shopping.Models
         public Nullable<int> book_Quantity { get; set; }
         public string book_Image { get; set; }
         public Nullable<int> book_Year { get; set; }
-        public Nullable<int> category_Id { get; set; }
+        public Nullable<int> subcategory_Id { get; set; }
         public Nullable<int> publisher_Id { get; set; }
         public string book_Slug { get; set; }
     
-        public virtual Category Category { get; set; }
         public virtual Publisher Publisher { get; set; }
+        public virtual Sub_Category Sub_Category { get; set; }
         public virtual ICollection<Orderdetail> Orderdetails { get; set; }
         public virtual ICollection<Author> Authors { get; set; }
     }

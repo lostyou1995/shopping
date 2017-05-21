@@ -16,7 +16,6 @@ namespace shopping.Models
     {
         public Category()
         {
-            this.Books = new HashSet<Book>();
             this.Sub_Category = new HashSet<Sub_Category>();
         }
     
@@ -24,7 +23,6 @@ namespace shopping.Models
         public string category_Name { get; set; }
         public string category_Slug { get; set; }
     
-        public virtual ICollection<Book> Books { get; set; }
         public virtual ICollection<Sub_Category> Sub_Category { get; set; }
     }
 }

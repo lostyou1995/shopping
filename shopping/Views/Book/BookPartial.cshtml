@@ -2,24 +2,30 @@
 @{
     foreach (var item in Model)
     {
-        <div class="col-sm-4">
+        <div class="col-sm-4" style="padding-right:0;">
             <div class="product-image-wrapper">
                 <div class="single-products">
                     <div class="productinfo text-center">
-
                         <img src="~/Content/fontEnd/images/book/@item.book_Image" />
+                        <p><a href="@Url.Action("Details", "Book", new { @id=@item.book_Id,@slug=@item.book_Slug})">@item.book_Title</a></p>
                     </div>
 
                 </div>
-                <div class="text-center textTransform">
-                    <a href="@Url.Action("Details", "Book", new { @id = item.book_Id })">@item.book_Title</a>
-                </div>
                 <div class="choose">
-                    <ul class="nav nav-pills nav-justified">
-                        <li><a href="#"><i class="fa fa-plus-square"></i>Thêm vào giỏ hàng</a></li>
-                        <li><a href="#"><i class="fa fa-plus-square"></i>Giá: @item.book_Price</a></li>
+                    <ul>
+                        <li><i class="fa fa-hand-o-right" aria-hidden="true"></i><span style="padding-left:10px;">Giá :  </span>@String.Format("{0:0,0}", @item.book_Price) VND</li>
+                        <li class="textTransform">
+                            <i class="fa fa-hand-o-right" aria-hidden="true"></i><span style="padding-left:10px;">Tác giả : </span>@{
+                                foreach (var authour in item.Authors)
+                                {
+                                    @authour.author_Name
+                                }
+                                                    }
+                        </li>
+                        <li class="textTransform"><i class="fa fa-hand-o-right" aria-hidden="true"></i><span style="padding-left:10px;">NXB :  </span>
+                            @item.Publisher.publisher_Name
+                        </li>
                     </ul>
-
                 </div>
             </div>
         </div>

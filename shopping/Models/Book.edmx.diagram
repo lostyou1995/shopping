@@ -4,25 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3ca70e79cfb646b18ca1b3c35abce488" Name="Diagram1">
-        <EntityTypeShape EntityType="shopModel.Account" Width="1.5" PointX="5.75" PointY="13.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopModel.AccountGroup" Width="1.5" PointX="8" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopModel.Author" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopModel.Book" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopModel.Category" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopModel.Customer" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopModel.Group" Width="1.5" PointX="5.75" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopModel.GroupPath" Width="1.5" PointX="8" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopModel.Order" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopModel.Orderdetail" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopModel.Path" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopModel.Publisher" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopModel.Sub_Category" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="shopModel.sysdiagram" Width="1.5" PointX="7.75" PointY="2.375" IsExpanded="true" />
+      <Diagram DiagramId="7218cb73718c40d4a04c941f7d432e89" Name="Diagram1">
+        <EntityTypeShape EntityType="shopModel.Account" Width="1.5" PointX="7.75" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopModel.AccountGroup" Width="1.5" PointX="10" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopModel.Author" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopModel.Book" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopModel.Category" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopModel.Customer" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopModel.Group" Width="1.5" PointX="7.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopModel.GroupPath" Width="1.5" PointX="10" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopModel.Order" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopModel.Orderdetail" Width="1.5" PointX="7.5" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopModel.Path" Width="1.5" PointX="7.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopModel.Publisher" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopModel.Sub_Category" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="shopModel.sysdiagram" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="shopModel.FK_AccountGroup_Account" ManuallyRouted="false" />
         <AssociationConnector Association="shopModel.FK_AccountGroup_Group" ManuallyRouted="false" />
-        <AssociationConnector Association="shopModel.FK_Book_Category" ManuallyRouted="false" />
         <AssociationConnector Association="shopModel.FK_Book_Publisher" ManuallyRouted="false" />
+        <AssociationConnector Association="shopModel.FK_Book_Sub_Category" ManuallyRouted="false" />
         <AssociationConnector Association="shopModel.FK_Orderdetail_Book" ManuallyRouted="false" />
         <AssociationConnector Association="shopModel.FK_Sub_Category_Category" ManuallyRouted="false" />
         <AssociationConnector Association="shopModel.FK_Order_Customer" ManuallyRouted="false" />

@@ -1,66 +1,59 @@
 ﻿@model shopping.Models.Book
 
 @{
-    ViewBag.Title = @Html.DisplayFor(model => model.book_Title);
+    ViewBag.Title = @Model.book_Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2></h2>
-
+@{
 <div class="col-sm-9 padding-right">
+    <h2 class="title text-center">Xem chi tiết</h2>
+
     <div class="product-details">
         <!--product-details-->
         <div class="col-sm-5">
             <div class="view-product">
-                <img src="~/Content/fontEnd/images/book/@Html.DisplayFor(model=>model.book_Image)" title="@Html.DisplayFor(model=>model.book_Title)" />
+                <img src="~/Content/fontEnd/images/book/@Model.book_Image" />
             </div>
 
         </div>
         <div class="col-sm-7">
             <div class="product-information">
                 <!--/product-information-->
-                <h2 class="textTransform">@Html.DisplayFor(model => model.book_Title)</h2>
+                <h2 class="textTransform">@Model.book_Title</h2>
                 <span>
-                    <span>@Html.DisplayFor(model => model.book_Price)</span>
-                    <label>Số Lượng:</label>
-                    <input type="text" value="3">
-
+                    <span>Giá : @String.Format("{0:0,0}",@Model.book_Price) VND</span>
+                    @using (Html.BeginForm("AddCartitem", "CartItem", new { @id = @Model.book_Id, @url = Request.Url.ToString() }))
+                    {
+                        <button type="submit" class="btn btn-fefault cart">
+                            <i class="fa fa-shopping-cart"></i>
+                            Thêm vào giỏ hàng
+                        </button>
+                    }
+                    
+                    
                 </span>
+                <p class="textTransform"><b>Nhà xuất bản:</b> @Model.book_Year</p>
+                <p class="textTransform"><b>Năm xuất bản:</b> @Model.Publisher.publisher_Name</p>
                 <p class="textTransform">
-                    <b>Tác giả: </b>@{
+                    <b>Tác giả:</b>
+                    @{
                         foreach (var author in Model.Authors)
                         {
                             @author.author_Name
                         }
                     }
                 </p>
-                <p class="textTransform">
-                    <b>Nhà xuất bản : </b>@Html.DisplayFor(model=>model.Publisher.publisher_Name)
-                </p>
-                <p class="textTransform"><b>Năm xuất bản : </b> @Html.DisplayFor(model => model.book_Year)</p>
-                <p>
-                    <b>
-                        <button type="button" class="btn btn-fefault cart">
-                            <i class="fa fa-shopping-cart"></i>
-                            Thêm vào giỏ hàng
-                        </button>
-                    </b>
-                </p>
+                <p class="textTransform"><b>Chủ đề:</b> @Model.Sub_Category.subcategory_Name</p>
             </div><!--/product-information-->
         </div>
     </div>
-    <div>
-        <h1>Giới thiệu sách</h1>
-        <p style="text-align:justify;">
-            @Html.DisplayFor(model => model.book_Description)
-        </p>
+    <div style="text-align:justify">
+        <h1 class="textTransform">giới thiệu về sách</h1>
+        @Model.book_Description
     </div>
     <div>
-        <div class="recommended_items">
-            <!--recommended_items-->
-            <h2 class="title text-center">Sách cùng chủ đề</h2>
-
-        @Html.Action("RecommendCategory", "Category", new { id = Model.category_Id })
-        </div><!--/recommended_items-->
-    </div>
+        <h1 class="textTransform">mời các bạn đón đọc và để lại ý kiến</h1>
+        <div class="fb-comments" data-href="" data-numposts="5"></div>    </div>
 </div>
+    }

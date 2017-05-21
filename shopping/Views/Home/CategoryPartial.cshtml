@@ -3,26 +3,23 @@
     foreach (var item in Model)
     {
 
-
             <!--category-productsr-->
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordian" href="#@item.category_Slug">
+                    <a href="@Url.Action("FindCategoryParent", "Category", new { @id = @item.category_Id })">@item.category_Name</a>
+                    <a data-toggle="collapse" data-parent="#accordian" href="#@item.category_Id">
                         <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                        @item.category_Name
                     </a>
                 </h4>
             </div>
-            <div id="@item.category_Slug" class="panel-collapse collapse">
+            <div id="@item.category_Id" class="panel-collapse collapse">
                 <div class="panel-body">
                     <ul>
                         @foreach (var itemsub in item.Sub_Category)
                         {
-                            <li><a href="@itemsub.subcategory_Slug">@itemsub.subcategory_Name </a></li>
+                            <li><a href="@Url.Action("FindCategory", "Category", new {@id=@itemsub.subcategory_Id ,@slug=@itemsub.subcategory_Slug})">@itemsub.subcategory_Name </a></li>
                         }
-
-
                     </ul>
                 </div>
             </div>
