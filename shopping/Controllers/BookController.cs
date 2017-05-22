@@ -17,12 +17,12 @@ namespace shopping.Controllers
         // GET: /Book/
         public ActionResult Index()
         {
-            var books = db.Books.Include(b => b.Sub_Category).Include(b => b.Publisher);
+            var books = db.Books.Include(b => b.Publisher).Include(b => b.Sub_Category);
             return View(books.ToList());
         }
 
         // GET: /Book/Details/5
-        public ActionResult Details(int? id,string slug)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -39,8 +39,8 @@ namespace shopping.Controllers
         // GET: /Book/Create
         public ActionResult Create()
         {
-            ViewBag.category_Id = new SelectList(db.Categories, "category_Id", "category_Name");
             ViewBag.publisher_Id = new SelectList(db.Publishers, "publisher_Id", "publisher_Name");
+            ViewBag.subcategory_Id = new SelectList(db.Sub_Category, "subcategory_Id", "subcategory_Name");
             return View();
         }
 
@@ -49,7 +49,7 @@ namespace shopping.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="book_Id,book_Title,book_Description,book_Price,book_Quantity,book_Image,book_Year,category_Id,publisher_Id,book_Slug")] Book book)
+        public ActionResult Create([Bind(Include="book_Id,book_Title,book_Description,book_Price,book_Quantity,book_Image,book_Year,subcategory_Id,publisher_Id,book_Slug")] Book book)
         {
             if (ModelState.IsValid)
             {
@@ -58,8 +58,8 @@ namespace shopping.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.category_Id = new SelectList(db.Categories, "category_Id", "category_Name", book.subcategory_Id);
             ViewBag.publisher_Id = new SelectList(db.Publishers, "publisher_Id", "publisher_Name", book.publisher_Id);
+            ViewBag.subcategory_Id = new SelectList(db.Sub_Category, "subcategory_Id", "subcategory_Name", book.subcategory_Id);
             return View(book);
         }
 
@@ -75,8 +75,8 @@ namespace shopping.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.category_Id = new SelectList(db.Categories, "category_Id", "category_Name", book.subcategory_Id);
             ViewBag.publisher_Id = new SelectList(db.Publishers, "publisher_Id", "publisher_Name", book.publisher_Id);
+            ViewBag.subcategory_Id = new SelectList(db.Sub_Category, "subcategory_Id", "subcategory_Name", book.subcategory_Id);
             return View(book);
         }
 
@@ -85,7 +85,7 @@ namespace shopping.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="book_Id,book_Title,book_Description,book_Price,book_Quantity,book_Image,book_Year,category_Id,publisher_Id,book_Slug")] Book book)
+        public ActionResult Edit([Bind(Include="book_Id,book_Title,book_Description,book_Price,book_Quantity,book_Image,book_Year,subcategory_Id,publisher_Id,book_Slug")] Book book)
         {
             if (ModelState.IsValid)
             {
@@ -93,8 +93,8 @@ namespace shopping.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.category_Id = new SelectList(db.Categories, "category_Id", "category_Name", book.subcategory_Id);
             ViewBag.publisher_Id = new SelectList(db.Publishers, "publisher_Id", "publisher_Name", book.publisher_Id);
+            ViewBag.subcategory_Id = new SelectList(db.Sub_Category, "subcategory_Id", "subcategory_Name", book.subcategory_Id);
             return View(book);
         }
 
@@ -132,10 +132,22 @@ namespace shopping.Controllers
             }
             base.Dispose(disposing);
         }
-        public ActionResult BookPartial()
+        public ActionResult BookPartial(int? page)
         {
             var book = db.Books.ToList();
-            return PartialView(book);
+            //number product on page
+            int pageSize = 6;
+            //neu khong du 6sp/trang thi so trang mac dinh la 1;
+            int pageNumber = (page ?? 1);
+            return PartialView(book.ToPagedList(pageNumber, pageSize));
+        }
+        public ActionResult SearchBook(FormCollection f)
+        {
+            string stringSearch = f["txtSearch"].ToString();
+            List<Book> list = db.Books.Where(x=>x.book_Title.Contains(stringSearch)).ToList();
+            ViewBag.liscount = list.Count();
+            return View(list);
         }
     }
+
 }

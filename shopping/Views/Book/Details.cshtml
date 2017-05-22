@@ -6,54 +6,55 @@
 }
 
 @{
-<div class="col-sm-9 padding-right">
-    <h2 class="title text-center">Xem chi tiết</h2>
+    <div class="col-sm-9 padding-right">
+        <h2 class="title text-center">Xem chi tiết</h2>
 
-    <div class="product-details">
-        <!--product-details-->
-        <div class="col-sm-5">
-            <div class="view-product">
-                <img src="~/Content/fontEnd/images/book/@Model.book_Image" />
+        <div class="product-details">
+            <!--product-details-->
+            <div class="col-sm-5">
+                <div class="view-product">
+                    <img src="~/Content/fontEnd/images/book/@Model.book_Image" />
+                </div>
+
             </div>
-
-        </div>
-        <div class="col-sm-7">
-            <div class="product-information">
-                <!--/product-information-->
-                <h2 class="textTransform">@Model.book_Title</h2>
-                <span>
-                    <span>Giá : @String.Format("{0:0,0}",@Model.book_Price) VND</span>
-                    @using (Html.BeginForm("AddCartitem", "CartItem", new { @id = @Model.book_Id, @url = Request.Url.ToString() }))
-                    {
-                        <button type="submit" class="btn btn-fefault cart">
-                            <i class="fa fa-shopping-cart"></i>
-                            Thêm vào giỏ hàng
-                        </button>
-                    }
-                    
-                    
-                </span>
-                <p class="textTransform"><b>Nhà xuất bản:</b> @Model.book_Year</p>
-                <p class="textTransform"><b>Năm xuất bản:</b> @Model.Publisher.publisher_Name</p>
-                <p class="textTransform">
-                    <b>Tác giả:</b>
-                    @{
-                        foreach (var author in Model.Authors)
+            <div class="col-sm-7">
+                <div class="product-information">
+                    <!--/product-information-->
+                    <h2 class="textTransform">@Model.book_Title</h2>
+                    <span>
+                        <span>Giá : @String.Format("{0:0,0}", @Model.book_Price) VND</span>
+                        @using (Html.BeginForm("AddCartitem", "CartItem", new { @id = @Model.book_Id, @url = Request.Url.ToString() }))
                         {
-                            @author.author_Name
+                            <button type="submit" class="btn btn-fefault cart">
+                                <i class="fa fa-shopping-cart"></i>
+                                Thêm vào giỏ hàng
+                            </button>
                         }
-                    }
-                </p>
-                <p class="textTransform"><b>Chủ đề:</b> @Model.Sub_Category.subcategory_Name</p>
-            </div><!--/product-information-->
+
+
+                    </span>
+                    <p class="textTransform"><b>Nhà xuất bản:</b> @Model.book_Year</p>
+                    <p class="textTransform"><b>Năm xuất bản:</b> @Model.Publisher.publisher_Name</p>
+                    <p class="textTransform">
+                        <b>Tác giả:</b>
+                        @{
+                            foreach (var author in Model.Authors)
+                            {
+                                @author.author_Name
+                            }
+                        }
+                    </p>
+                    <p class="textTransform"><b>Chủ đề:</b> @Model.Sub_Category.subcategory_Name</p>
+                </div><!--/product-information-->
+            </div>
+        </div>
+        <div style="text-align:justify">
+            <h1 class="textTransform">giới thiệu về sách</h1>
+            @Model.book_Description
+        </div>
+        <div>
+            <h1 class="textTransform">mời các bạn đón đọc và để lại ý kiến</h1>
+            <div class="fb-comments" data-href="" data-numposts="5"></div>
         </div>
     </div>
-    <div style="text-align:justify">
-        <h1 class="textTransform">giới thiệu về sách</h1>
-        @Model.book_Description
-    </div>
-    <div>
-        <h1 class="textTransform">mời các bạn đón đọc và để lại ý kiến</h1>
-        <div class="fb-comments" data-href="" data-numposts="5"></div>    </div>
-</div>
-    }
+}

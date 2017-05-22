@@ -66,10 +66,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.category_Id, "category_Id", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.subcategory_Id, "subcategory_Id", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("category_Id", String.Empty)
-                @Html.ValidationMessageFor(model => model.category_Id)
+                @Html.DropDownList("subcategory_Id", String.Empty)
+                @Html.ValidationMessageFor(model => model.subcategory_Id)
             </div>
         </div>
 

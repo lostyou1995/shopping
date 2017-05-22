@@ -34,10 +34,10 @@
             @Html.DisplayNameFor(model => model.book_Slug)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Category.category_Name)
+            @Html.DisplayNameFor(model => model.Publisher.publisher_Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Publisher.publisher_Name)
+            @Html.DisplayNameFor(model => model.Sub_Category.subcategory_Name)
         </th>
         <th></th>
     </tr>
@@ -66,10 +66,10 @@
             @Html.DisplayFor(modelItem => item.book_Slug)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Category.category_Name)
+            @Html.DisplayFor(modelItem => item.Publisher.publisher_Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Publisher.publisher_Name)
+            @Html.DisplayFor(modelItem => item.Sub_Category.subcategory_Name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.book_Id }) |

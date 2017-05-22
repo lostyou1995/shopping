@@ -1,0 +1,13 @@
+﻿@using shopping.Models
+<div class="brands-name">
+    <ul class="nav nav-pills nav-stacked">
+        @{
+            foreach (var item in Model)
+            {
+                <li><a href="@Url.Action("FindPublisher", "Publisher", new { @id = @item.publisher_Id})"> <span class="pull-right"></span>@item.publisher_Name</a></li> 
+            }
+        }
+        
+        
+    </ul>
+</div>

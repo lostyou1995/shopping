@@ -10,18 +10,24 @@ namespace shopping.Controllers
 {
     public class HomeController : System.Web.Mvc.Controller
     {
-        public shopEntities shop = new shopEntities();
-        public ActionResult Index()
+        public shopEntities db = new shopEntities();
+        public ActionResult Index(int? page)
         {
-    
-            return View();
+            var book = db.Books.OrderBy(x => x.book_Title);
+            int pageSize =6;
+
+            int pageNumber = (page ?? 1);
+            return View(book.ToPagedList(pageNumber,pageSize));
         }
         public ActionResult CategoryPartial()
         {
-            var category=shop.Categories.ToList();
+            var category = db.Categories.ToList();
             return PartialView(category);
         }
-
+        public ActionResult PublisherPartial()
+        {
+            return PartialView(db.Publishers.ToList());
+        }
        
     }
 }

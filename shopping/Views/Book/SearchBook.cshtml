@@ -1,10 +1,12 @@
-﻿@using shopping.Models
-@using PagedList.Mvc;
-@model PagedList.IPagedList<shopping.Models.Book>
-<link href="~/Content/PagedList.css" rel="stylesheet" />
+﻿
+@{
+    ViewBag.Title = "SearchBook";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
 <div class="col-sm-9 padding-right">
     <div class="features_items">
-        @{
+        @{if(ViewBag.listcount!=0){
 
             foreach (var item in Model)
             {
@@ -26,7 +28,7 @@
                                 {
                                     @authour.author_Name
                                 }
-                                    }
+                                                    }
                                 </li>
                                 <li class="textTransform">
                                     <i class="fa fa-hand-o-right" aria-hidden="true"></i><span style="padding-left:10px;">NXB :  </span>
@@ -39,8 +41,7 @@
 
             }
         }
+        }
+        <h2 class="title text-center">không tìm thấy kết quả phù hợp</h2>
     </div>
-    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
-    @Html.PagedListPager(Model, page => Url.Action("Index", "Home", new {page=page }))
-
-</div>
+    </div>
