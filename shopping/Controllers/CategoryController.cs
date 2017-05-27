@@ -38,8 +38,34 @@ namespace shopping.Controllers
         // GET: /Category/Create
         public ActionResult Create()
         {
-            return View();
-        }
+            Account account = new Account();
+            try
+            {
+                account = (Account)Session["Account"];
+                var path = (from p in db.Paths
+                            join groupPath in db.GroupPaths on p.id equals groupPath.pathId
+                            join g in db.Groups on groupPath.groupId equals g.id
+                            join accGroup in db.AccountGroups on g.id equals accGroup.groupId
+                            join acc in db.Accounts on accGroup.accountId equals acc.id
+                            where acc.id == account.id
+                            select p).ToList();
+                for (int i = 0; i < path.Count; i++)
+                {
+                    if (path[i].pathUrl.CompareTo("/Category/Create") == 0)
+                    {
+                        return View();
+                    }
+                    else { continue; }
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            if (account == null) { return RedirectToAction("Index", "Home"); }
+            return RedirectToAction("Index", "Home");
+        
+    }
 
         // POST: /Category/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -92,17 +118,50 @@ namespace shopping.Controllers
         // GET: /Category/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            Account account = new Account();
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                account = (Account)Session["Account"];
+                var path = (from p in db.Paths
+                            join groupPath in db.GroupPaths on p.id equals groupPath.pathId
+                            join g in db.Groups on groupPath.groupId equals g.id
+                            join accountGrouop in db.AccountGroups on g.id equals accountGrouop.groupId
+                            join acc in db.Accounts on accountGrouop.accountId equals acc.id
+                            where acc.id == account.id
+                            select p).ToList();
+
+                for (int i = 0; i < path.Count; i++)
+                {
+                    if (path[i].pathUrl.CompareTo("/Category/Delete") == 0)
+                    {
+                        if (id == null)
+                        {
+                            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        }
+                        Category product = db.Categories.Find(id);
+                        if (product == null)
+                        {
+                            return RedirectToAction("Index", "Category");
+                        }
+                        return View(product);
+                    }
+                    else
+                    { continue; }
+                }
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            catch
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Category");
             }
-            return View(category);
+            if (account == null)
+            {
+                return RedirectToAction("Index", "Category");
+            }
+
+
+            return RedirectToAction("Index", "Category");
         }
+            
 
         // POST: /Category/Delete/5
         [HttpPost, ActionName("Delete")]

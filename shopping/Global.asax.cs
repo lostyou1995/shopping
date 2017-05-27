@@ -17,5 +17,13 @@ namespace shopping
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+        protected void Secction_Start()
+        {
+
+            Session["userid"] = null;
+            Session["username"] = null;
+            Session["fullname"] = null;
+        }
+
     }
 }

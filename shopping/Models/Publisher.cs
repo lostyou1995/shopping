@@ -14,6 +14,7 @@ namespace shopping.Models
     
     public partial class Publisher
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Publisher()
         {
             this.Books = new HashSet<Book>();
@@ -23,6 +24,7 @@ namespace shopping.Models
         public string publisher_Name { get; set; }
         public string publisher_Slug { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Book> Books { get; set; }
     }
 }

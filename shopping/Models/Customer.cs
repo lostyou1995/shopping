@@ -9,24 +9,24 @@
 
 namespace shopping.Models
 {
-    using System.ComponentModel.DataAnnotations;
     using System;
     using System.Collections.Generic;
     
     public partial class Customer
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Customer()
         {
             this.Orders = new HashSet<Order>();
         }
     
         public int customer_Id { get; set; }
-        [Required]
         public string customer_Fullname { get; set; }
         public string customer_Address { get; set; }
         public string customer_Phone { get; set; }
         public string customer_Email { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
     }
 }

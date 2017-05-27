@@ -21,7 +21,33 @@ namespace shopping.Controllers
             var category=shop.Categories.ToList();
             return PartialView(category);
         }
+        public ActionResult login()
+        {
 
-       
+            return View();
+        }
+        [HttpPost]
+        public ActionResult login(string username, string password)
+        {
+            string passwordMD5 = Common.encrypt(username + password);
+
+            Account user = shop.Accounts.FirstOrDefault(x => x.accountName == username && x.password == passwordMD5 && x.active == 1);
+            if (user != null)
+            {
+                Session.Add("Account", user);
+                return RedirectToAction("Index");
+            }
+            ViewBag.error = "Đăng nhập sai hoặc bạn không có quyền truy cập";
+            return View();
+        }
+
+        public ActionResult Logout()
+        {
+            Session["userid"] = null;
+            Session["username"] = null;
+            Session["fullname"] = null;
+            return RedirectToAction("Login");
+        }
+
     }
 }

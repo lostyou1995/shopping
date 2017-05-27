@@ -1,15 +1,19 @@
 ﻿
 <link href="~/Content/PagedList.css" rel="stylesheet" />
-@{
-    ViewBag.Title = "Trang chủ";
+@{ 
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="col-sm-9 padding-right">
-    <div class="features_items">
-        <!--features_items-->
-        <h2 class="title text-center">Danh sách sản phẩm</h2>
-        @Html.Action("BookPartial","Book")
+<div id="content" class="span10">
+
+    <div class="col-sm-9 padding-right">
+        <div class="features_items">
+            <!--features_items-->
+            <h2 class="title text-center">Danh sách sản phẩm</h2>
+            @Html.Action("BookPartial", "Book")
+        </div>
     </div>
-</div>
+    </div>
 
 
 

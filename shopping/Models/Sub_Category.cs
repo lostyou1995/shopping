@@ -14,6 +14,7 @@ namespace shopping.Models
     
     public partial class Sub_Category
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Sub_Category()
         {
             this.Books = new HashSet<Book>();
@@ -24,6 +25,7 @@ namespace shopping.Models
         public Nullable<int> parent_CategoryId { get; set; }
         public string subcategory_Slug { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Book> Books { get; set; }
         public virtual Category Category { get; set; }
     }

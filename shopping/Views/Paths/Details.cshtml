@@ -1,0 +1,77 @@
+﻿@model shopping.Models.Path
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+<div id="content" class="span10">
+
+    <h2>Details</h2>
+
+    <div>
+        <h4>Path</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.pathName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.pathName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.pathDescription)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.pathDescription)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.pathUrl)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.pathUrl)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.imageUrl)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.imageUrl)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.display)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.display)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.parentId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.parentId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.active)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.active)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    </div>

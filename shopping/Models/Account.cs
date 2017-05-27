@@ -14,12 +14,14 @@ namespace shopping.Models
     
     public partial class Account
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Account()
         {
             this.AccountGroups = new HashSet<AccountGroup>();
         }
     
         public int id { get; set; }
+
         public string accountName { get; set; }
         public string password { get; set; }
         public string fullName { get; set; }
@@ -29,10 +31,10 @@ namespace shopping.Models
         public string email { get; set; }
         public string address { get; set; }
         public Nullable<System.DateTime> createDate { get; set; }
-        public Nullable<System.DateTime> lastLogin { get; set; }
         public Nullable<int> groupId { get; set; }
         public Nullable<int> active { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AccountGroup> AccountGroups { get; set; }
     }
 }
