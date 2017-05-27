@@ -156,6 +156,16 @@
     <NavigationProperty Name="Books" Relationship="Self.FK_Book_Sub_Category" FromRole="Sub_Category" ToRole="Book" />
     <NavigationProperty Name="Category" Relationship="Self.FK_Sub_Category_Category" FromRole="Sub_Category" ToRole="Category" />
   </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
   <Association Name="FK_AccountGroup_Account">
     <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
     <End Role="AccountGroup" Type="Self.AccountGroup" Multiplicity="*" />
@@ -294,6 +304,7 @@
     <EntitySet Name="Paths" EntityType="Self.Path" />
     <EntitySet Name="Publishers" EntityType="Self.Publisher" />
     <EntitySet Name="Sub_Category" EntityType="Self.Sub_Category" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <AssociationSet Name="FK_AccountGroup_Account" Association="Self.FK_AccountGroup_Account">
       <End Role="Account" EntitySet="Accounts" />
       <End Role="AccountGroup" EntitySet="AccountGroups" />

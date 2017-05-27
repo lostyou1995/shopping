@@ -17,28 +17,125 @@ namespace shopping.Controllers
         // GET: Accounts
         public ActionResult Index()
         {
-            return View(db.Accounts.ToList());
+            Account account = new Account();
+            try
+            {
+                account = (Account)Session["Account"];
+                if (account.groupId == 1)
+                {
+                    return View(db.Accounts.ToList());
+                }
+                else
+                {
+                    var path = (from p in db.Paths
+                                join groupPath in db.GroupPaths on p.id equals groupPath.pathId
+                                join g in db.Groups on groupPath.groupId equals g.id
+                                join accGroup in db.AccountGroups on g.id equals accGroup.groupId
+                                join acc in db.Accounts on accGroup.accountId equals acc.id
+                                where acc.id == account.id
+                                select p).ToList();
+                    for (int i = 0; i < path.Count; i++)
+                    {
+                        if (path[i].pathUrl.CompareTo("/Accounts/Index") == 0)
+                        {
+                            return View(db.Accounts.ToList());
+                        }
+                        else { continue; }
+                    }
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            if (account == null) { return RedirectToAction("Index", "Home"); }
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Accounts/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            Account account = new Account();
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                account = (Account)Session["Account"];
+                if (account.groupId==1)
+                {
+                    Account account1 = db.Accounts.Find(id);
+                    if (account == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(account1);
+                }
+                var path = (from p in db.Paths
+                            join groupPath in db.GroupPaths on p.id equals groupPath.pathId
+                            join g in db.Groups on groupPath.groupId equals g.id
+                            join accGroup in db.AccountGroups on g.id equals accGroup.groupId
+                            join acc in db.Accounts on accGroup.accountId equals acc.id
+                            where acc.id == account.id
+                            select p).ToList();
+                for (int i = 0; i < path.Count; i++)
+                {
+                    if (path[i].pathUrl.CompareTo("/Accounts/Detils") == 0)
+                    {
+                        Account account1 = db.Accounts.Find(id);
+                        if (account == null)
+                        {
+                            return HttpNotFound();
+                        }
+                        return View(account1);
+                    }
+                    else { continue; }
+                }
             }
-            Account account = db.Accounts.Find(id);
-            if (account == null)
+            catch
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(account);
+            if (account == null) { return RedirectToAction("Index", "Home"); }
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Accounts/Create
         public ActionResult Create()
         {
-            return View();
+
+            Account account = new Account();
+            try
+            {
+                account = (Account)Session["Account"];
+                if (account.groupId == 1)
+                {
+                    return View();
+                }
+                else
+                {
+                    var path = (from p in db.Paths
+                                join groupPath in db.GroupPaths on p.id equals groupPath.pathId
+                                join g in db.Groups on groupPath.groupId equals g.id
+                                join accGroup in db.AccountGroups on g.id equals accGroup.groupId
+                                join acc in db.Accounts on accGroup.accountId equals acc.id
+                                where acc.id == account.id
+                                select p).ToList();
+                    for (int i = 0; i < path.Count; i++)
+                    {
+                        if (path[i].pathUrl.CompareTo("/Accounts/Create") == 0)
+                        {
+                            return View();
+                        }
+                        else { continue; }
+                    }
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            if (account == null) { return RedirectToAction("Index", "Home"); }
+            return RedirectToAction("Index", "Home");
+
+
         }
 
         // POST: Accounts/Create
@@ -50,13 +147,11 @@ namespace shopping.Controllers
         {
             if (ModelState.IsValid)
             {
-                
                 var username = Request.Form["accountName"];
                 var password = Request.Form["password"];
                 string passwordMD5 = Common.encrypt(username + password);
                 account.password = passwordMD5;
                 account.createDate = DateTime.Now;
-                
                 db.Accounts.Add(account);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -68,16 +163,49 @@ namespace shopping.Controllers
         // GET: Accounts/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            Account account = new Account();
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                account = (Account)Session["Account"];
+                if (account.groupId == 1)
+                {
+                    Account account1 = db.Accounts.Find(id);
+                    if (account == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(account1);
+                }
+                else
+                {
+                    var path = (from p in db.Paths
+                                join groupPath in db.GroupPaths on p.id equals groupPath.pathId
+                                join g in db.Groups on groupPath.groupId equals g.id
+                                join accGroup in db.AccountGroups on g.id equals accGroup.groupId
+                                join acc in db.Accounts on accGroup.accountId equals acc.id
+                                where acc.id == account.id
+                                select p).ToList();
+                    for (int i = 0; i < path.Count; i++)
+                    {
+                        if (path[i].pathUrl.CompareTo("/Accounts/Edit") == 0)
+                        {
+                            Account account1 = db.Accounts.Find(id);
+                            if (account == null)
+                            {
+                                return HttpNotFound();
+                            }
+                            return View(account1);
+                        }
+                        else { continue; }
+                    }
+                }
             }
-            Account account = db.Accounts.Find(id);
-            if (account == null)
+            catch
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(account);
+            if (account == null) { return RedirectToAction("Index", "Home"); }
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: Accounts/Edit/5
@@ -103,16 +231,50 @@ namespace shopping.Controllers
         // GET: Accounts/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            Account account = new Account();
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                account = (Account)Session["Account"];
+                if (account.groupId == 1)
+                {
+                    Account account1 = db.Accounts.Find(id);
+                    if (account == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(account1);
+
+                }
+                else
+                {
+                    var path = (from p in db.Paths
+                                join groupPath in db.GroupPaths on p.id equals groupPath.pathId
+                                join g in db.Groups on groupPath.groupId equals g.id
+                                join accGroup in db.AccountGroups on g.id equals accGroup.groupId
+                                join acc in db.Accounts on accGroup.accountId equals acc.id
+                                where acc.id == account.id
+                                select p).ToList();
+                    for (int i = 0; i < path.Count; i++)
+                    {
+                        if (path[i].pathUrl.CompareTo("/Accounts/Delete") == 0)
+                        {
+                            Account account1 = db.Accounts.Find(id);
+                            if (account == null)
+                            {
+                                return HttpNotFound();
+                            }
+                            return View(account1);
+                        }
+                        else { continue; }
+                    }
+                }
             }
-            Account account = db.Accounts.Find(id);
-            if (account == null)
+            catch
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(account);
+            if (account == null) { return RedirectToAction("Index", "Home"); }
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: Accounts/Delete/5
@@ -134,6 +296,6 @@ namespace shopping.Controllers
             }
             base.Dispose(disposing);
         }
-        
+
     }
 }

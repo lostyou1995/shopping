@@ -21,7 +21,6 @@ namespace shopping.Models
         }
     
         public int id { get; set; }
-
         public string accountName { get; set; }
         public string password { get; set; }
         public string fullName { get; set; }

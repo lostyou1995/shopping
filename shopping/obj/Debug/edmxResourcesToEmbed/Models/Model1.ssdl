@@ -142,6 +142,16 @@
     <Property Name="parent_CategoryId" Type="int" />
     <Property Name="subcategory_Slug" Type="nvarchar" MaxLength="250" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <Association Name="FK_AccountGroup_Account">
     <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
     <End Role="AccountGroup" Type="Self.AccountGroup" Multiplicity="*" />
@@ -301,6 +311,7 @@
     <EntitySet Name="Path" EntityType="Self.Path" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Publisher" EntityType="Self.Publisher" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sub_Category" EntityType="Self.Sub_Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_AccountGroup_Account" Association="Self.FK_AccountGroup_Account">
       <End Role="Account" EntitySet="Account" />
       <End Role="AccountGroup" EntitySet="AccountGroup" />
