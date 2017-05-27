@@ -22,7 +22,7 @@
 
                 <tr>
                     <td>@item.book_Id</td>
-                    <td class="textTransform"><a href="@Url.Action("Details", "Book", new { @id=@item.book_Id})">@item.book_Name</a></td>
+                    <td class="textTransform"><a href="@Url.Action("Details", "Book", new { @id=@item.book_Id,@slug=@item.book_Slug})">@item.book_Name</a></td>
                     <td>
                         <img src="~/Content/fontEnd/images/book/@item.book_Image" width="50" height="50" />
                     </td>
@@ -35,7 +35,7 @@
                         <a href="@Url.Action("EditCartitem", "CartItem")" title="Chỉnh sửa">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </a>
-                        <a href="@Url.Action("DeleteCartitem", "CartItem", new { @id=@item.book_Id})" title="Xóa" style="color:red;">
+                        <a href="@Url.Action("DeleteCartitem", "CartItem", new { @id=@item.book_Id,@slug=@item.book_Slug})" title="Xóa" style="color:red;">
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </a>
                     </td>

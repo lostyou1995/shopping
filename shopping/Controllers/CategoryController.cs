@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using shopping.Models;
+using PagedList;
 
 namespace shopping.Controllers
 {
@@ -25,12 +26,12 @@ namespace shopping.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Home");
             }
             Category category = db.Categories.Find(id);
             if (category == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
             return View(category);
         }
@@ -63,12 +64,12 @@ namespace shopping.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Home");
             }
             Category category = db.Categories.Find(id);
             if (category == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
             return View(category);
         }
@@ -94,12 +95,12 @@ namespace shopping.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Home");
             }
             Category category = db.Categories.Find(id);
             if (category == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
             return View(category);
         }
@@ -134,15 +135,23 @@ namespace shopping.Controllers
             ViewBag.Title = findCategory.subcategory_Name.ToUpper();
             return View(findCategory.Books.ToList());
         }
-        public ActionResult FindCategoryParent(int id)
+        public ActionResult FindCategoryParent(int? id,int? page,string slug)
         {
+            Category cat=db.Categories.Find(id);
+            if(id==null || cat==null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             var findCategoryParent = (from book in db.Books
                                      join subcate in db.Sub_Category on book.subcategory_Id equals subcate.subcategory_Id
                                      join cate in db.Categories on subcate.parent_CategoryId equals cate.category_Id
                                      where cate.category_Id == id
                                      select book).ToList();
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
             ViewBag.Title = db.Categories.Where(x => x.category_Id == id).Select(x => x.category_Name).SingleOrDefault().ToUpper();
-            return View(findCategoryParent);
+            return View(findCategoryParent.ToPagedList(pageNumber,pageSize));
         }
     }
 }

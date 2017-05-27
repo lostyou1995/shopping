@@ -25,12 +25,12 @@ namespace shopping.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Home");
             }
             Publisher publisher = db.Publishers.Find(id);
             if (publisher == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
             return View(publisher);
         }
@@ -63,12 +63,12 @@ namespace shopping.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Home");
             }
             Publisher publisher = db.Publishers.Find(id);
             if (publisher == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
             return View(publisher);
         }
@@ -94,12 +94,12 @@ namespace shopping.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Home");
             }
             Publisher publisher = db.Publishers.Find(id);
             if (publisher == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
             return View(publisher);
         }
@@ -123,9 +123,17 @@ namespace shopping.Controllers
             }
             base.Dispose(disposing);
         }
-        public ActionResult FindPublisher(int id)
+        public ActionResult FindPublisher(int? id,string slug)
         {
+            if (id == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             var findpublisher = db.Publishers.Find(id);
+            if (findpublisher == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             ViewBag.Title = findpublisher.publisher_Name.ToUpper();
             return View(findpublisher.Books.ToList());
         }

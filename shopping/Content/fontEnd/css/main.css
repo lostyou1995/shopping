@@ -616,7 +616,7 @@ ul.sub-menu {
 
 
 #slider {
-  padding-bottom: 45px;
+  /*padding-bottom: 45px;*/
 }
 
 .carousel-indicators li {
@@ -898,6 +898,8 @@ h2.title {
 	border:1px solid #F7F7F5;
 	overflow: hidden;
 	margin-bottom:30px;
+    min-height: 288px;
+    float: left;
 }
 
 .single-products {
@@ -1021,6 +1023,7 @@ h2.title {
 
 .choose {
   border-top: 1px solid #F7F7F0;
+  margin-left:-40px;
 }
 
 .choose ul li a {

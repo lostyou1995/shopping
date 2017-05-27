@@ -5,12 +5,16 @@
 }
 
 <div class="col-sm-9 padding-right">
+    <h2 class="title text-center">Danh sách sản phẩm</h2>
+
     <div class="features_items">
-        @{if(ViewBag.listcount!=0){
+        @{
+            if(ViewBag.listcount!=0){
+
 
             foreach (var item in Model)
             {
-                <div class="col-sm-4" style="padding-right:0;">
+                <div class="col-sm-3">
                     <div class="product-image-wrapper">
                         <div class="single-products">
                             <div class="productinfo text-center">
@@ -40,8 +44,8 @@
                 </div>
 
             }
+        }        <h2 class="text-center">không có kết quả tìm kiếm phù hợp</h2>
+
         }
-        }
-        <h2 class="title text-center">không tìm thấy kết quả phù hợp</h2>
     </div>
     </div>

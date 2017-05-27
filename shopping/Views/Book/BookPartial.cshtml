@@ -3,44 +3,71 @@
 @model PagedList.IPagedList<shopping.Models.Book>
 <link href="~/Content/PagedList.css" rel="stylesheet" />
 <div class="col-sm-9 padding-right">
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { }))
+    {
+        //string[] sort = new string[] { "descPrice", "acsPrice","descName","ascName" };
+        List<object> sort = new List<object>{ new { vn = "gia theo gia", value = "descPrice" },
+                    new { vn = "tag g", value = "acsPrice" },
+                    new { vn = "g t", value = "descName" },
+                    new { vn = "t t", value = "ascName" },
+        };
+        object obj = new { vn = "Asdasd", value = "asdasdsd" };
+    <div class="row">
+        <div class="col-lg-4">
+            <select name="sortdisplay" onchange="this.form.submit()">
+                <option class="textTransform">Sắp xếp sách theo trạng thái</option>
+                @for (int i = 0; i < sort.Count(); i++)
+                {
+                    string value = sort[i].GetType().GetProperty("value").GetValue(sort[i]).ToString();
+                    string display = sort[i].GetType().GetProperty("vn").GetValue(sort[i]).ToString();
+                    <option value="@value" @(ViewBag.sortCurrent == value?"selected":"")>
+                        @display
+                    </option>
+                }
+            </select>
+        </div>
+    </div>
+    }
+    
     <div class="features_items">
-        @{
+        <div class="row" style="margin-left:15px;">
+                @{
+                        foreach (var item in Model)
+                        {
+                    <div class="col-sm-3">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <img src="~/Content/fontEnd/images/book/@item.book_Image" />
+                                    <p><a href="@Url.Action("Details", "Book", new { @id = @item.book_Id, @slug = @item.book_Slug })">@item.book_Title</a></p>
+                                </div>
 
-            foreach (var item in Model)
-            {
-                <div class="col-sm-4" style="padding-right:0;">
-                    <div class="product-image-wrapper">
-                        <div class="single-products">
-                            <div class="productinfo text-center">
-                                <img src="~/Content/fontEnd/images/book/@item.book_Image" />
-                                <p><a href="@Url.Action("Details", "Book", new { @id=@item.book_Id,@slug=@item.book_Slug})">@item.book_Title</a></p>
                             </div>
-
-                        </div>
-                        <div class="choose">
-                            <ul>
-                                <li><i class="fa fa-hand-o-right" aria-hidden="true"></i><span style="padding-left:10px;">Giá :  </span>@String.Format("{0:0,0}", @item.book_Price) VND</li>
-                                <li class="textTransform">
-                                    <i class="fa fa-hand-o-right" aria-hidden="true"></i><span style="padding-left:10px;">Tác giả : </span>@{
-                                foreach (var authour in item.Authors)
-                                {
-                                    @authour.author_Name
-                                }
-                                    }
-                                </li>
-                                <li class="textTransform">
-                                    <i class="fa fa-hand-o-right" aria-hidden="true"></i><span style="padding-left:10px;">NXB :  </span>
-                                    @item.Publisher.publisher_Name
-                                </li>
-                            </ul>
+                            <div class="choose">
+                                <ul>
+                                    <li><i class="fa fa-hand-o-right" aria-hidden="true"></i><span style="padding-left:10px;">Giá :  </span>@String.Format("{0:0,0}", @item.book_Price) VND</li>
+                                    <li class="textTransform">
+                                        <i class="fa fa-hand-o-right" aria-hidden="true"></i><span style="padding-left:10px;">Tác giả : </span>@{
+                            foreach (var authour in item.Authors)
+                            {
+                                @authour.author_Name
+                            }
+                                           }
+                                    </li>
+                                    <li class="textTransform">
+                                        <i class="fa fa-hand-o-right" aria-hidden="true"></i><span style="padding-left:10px;">NXB :  </span>
+                                        @item.Publisher.publisher_Name
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-
+                        }
             }
-        }
+        </div>
+
     </div>
     Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
-    @Html.PagedListPager(Model, page => Url.Action("Index", "Home", new {page=page }))
+    @Html.PagedListPager(Model, page => Url.Action("Index", "Home", new { page = page }))
 
 </div>

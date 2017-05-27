@@ -1,16 +1,22 @@
-﻿@model IEnumerable<shopping.Models.Book>
+﻿@using shopping.Models
+@using PagedList.Mvc;
+@model PagedList.IPagedList<shopping.Models.Book>
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 
 @{
     ViewBag.Title = ViewBag.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<h2 class="title text-center">Danh sách sản phẩm</h2>
 
 <div class="col-sm-9 padding-right">
-    <h2 class="title text-center">@ViewBag.Title</h2>
-@{
-        foreach (var item in Model)
+    <div class="features_items">
+
+            @{
+
+    foreach (var item in Model)
     {
-        <div class="col-sm-4" style="padding:0;">
+        <div class="col-sm-3">
             <div class="product-image-wrapper">
                 <div class="single-products">
                     <div class="productinfo text-center">
@@ -24,13 +30,14 @@
                         <li><i class="fa fa-hand-o-right" aria-hidden="true"></i><span style="padding-left:10px;">Giá :  </span>@String.Format("{0:0,0}", @item.book_Price) VND</li>
                         <li class="textTransform">
                             <i class="fa fa-hand-o-right" aria-hidden="true"></i><span style="padding-left:10px;">Tác giả : </span>@{
-                                foreach (var authour in item.Authors)
-                                {
-                                    @authour.author_Name
-                                }
-                                                    }
+        foreach (var authour in item.Authors)
+        {
+            @authour.author_Name
+        }
+                            }
                         </li>
-                        <li class="textTransform"><i class="fa fa-hand-o-right" aria-hidden="true"></i><span style="padding-left:10px;">NXB :  </span>
+                        <li class="textTransform">
+                            <i class="fa fa-hand-o-right" aria-hidden="true"></i><span style="padding-left:10px;">NXB :  </span>
                             @item.Publisher.publisher_Name
                         </li>
                     </ul>
@@ -40,5 +47,8 @@
 
     }
 }
-    
+        </div>
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", "Home", new { page = page }))
+
 </div>

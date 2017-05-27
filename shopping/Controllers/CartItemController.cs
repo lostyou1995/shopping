@@ -21,13 +21,13 @@ namespace shopping.Controllers
             return listCartitem;
         }
         //Add cart items
-        public ActionResult AddCartitem(int id,string url)
+        public ActionResult AddCartitem(string url,int id)
         {
             Book b = db.Books.SingleOrDefault(x => x.book_Id == id);
             if(b==null)
             {
-                Response.SubStatusCode=404;
-                return null;
+                return RedirectToAction("Index", "Home");
+
             }
             List<Cartitem> listCartitem = GetCartitem();
             //kiem tra book co ton tai trong session gio hang ko
@@ -49,8 +49,7 @@ namespace shopping.Controllers
             Book b = db.Books.SingleOrDefault(x => x.book_Id == id);
             if (b == null)
             {
-                Response.StatusCode = 404;
-                return null;
+                return RedirectToAction("Index", "Home");
             }
             List<Cartitem> listCartitem = GetCartitem();
             Cartitem product = listCartitem.SingleOrDefault(n => n.book_Id == id);
@@ -71,13 +70,13 @@ namespace shopping.Controllers
             return View(listCartitem);
         }
         //delete Cart item
-        public ActionResult DeleteCartitem(int id)
+        public ActionResult DeleteCartitem(int id,string slug)
         {
             Book b = db.Books.SingleOrDefault(x => x.book_Id == id);
             if (b == null)
             {
-                Response.StatusCode = 404;
-                return null;
+                return RedirectToAction("Index", "Home");
+
             }
             List<Cartitem> listCartitem = GetCartitem();
             Cartitem product = listCartitem.SingleOrDefault(n => n.book_Id == id);

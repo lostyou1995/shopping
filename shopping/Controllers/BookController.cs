@@ -26,12 +26,12 @@ namespace shopping.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index","Home");
             }
             Book book = db.Books.Find(id);
             if (book == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
             return View(book);
         }
@@ -68,12 +68,12 @@ namespace shopping.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Home");
             }
             Book book = db.Books.Find(id);
             if (book == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
             ViewBag.publisher_Id = new SelectList(db.Publishers, "publisher_Id", "publisher_Name", book.publisher_Id);
             ViewBag.subcategory_Id = new SelectList(db.Sub_Category, "subcategory_Id", "subcategory_Name", book.subcategory_Id);
@@ -103,12 +103,12 @@ namespace shopping.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "Home");
             }
             Book book = db.Books.Find(id);
             if (book == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
             return View(book);
         }
@@ -132,9 +132,28 @@ namespace shopping.Controllers
             }
             base.Dispose(disposing);
         }
-        public ActionResult BookPartial(int? page)
+        public ActionResult BookPartial(int? page, string sortdisplay)
         {
             var book = db.Books.ToList();
+            switch (sortdisplay)
+            { 
+                case "descPrice":
+                    book = db.Books.OrderByDescending(x => x.book_Price).ToList();
+                    break;
+                case "ascPrice":
+                    book = db.Books.OrderBy(x => x.book_Price).ToList();
+                    break;
+                case "descName":
+                    book = db.Books.OrderByDescending(x => x.book_Title).ToList();
+                    break;
+                case "ascName":
+                    book = db.Books.OrderBy(x => x.book_Title).ToList();
+                    break;
+                default:
+                    book = db.Books.OrderBy(x => x.book_Title).ToList();
+                    break;
+            }
+            ViewBag.sortCurrent = sortdisplay;
             //number product on page
             int pageSize = 6;
             //neu khong du 6sp/trang thi so trang mac dinh la 1;
@@ -143,11 +162,15 @@ namespace shopping.Controllers
         }
         public ActionResult SearchBook(FormCollection f)
         {
+            if (f["txtSeaerch"] == "")
+            {
+                ViewBag.Message = "không tìm thấy kết quả phù hợp";
+            }
             string stringSearch = f["txtSearch"].ToString();
+           
             List<Book> list = db.Books.Where(x=>x.book_Title.Contains(stringSearch)).ToList();
             ViewBag.liscount = list.Count();
             return View(list);
         }
     }
-
 }

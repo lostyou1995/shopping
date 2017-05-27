@@ -11,6 +11,7 @@ namespace shopping.Models
         public int book_Id { set; get; }
         public string book_Name { set; get; }
         public string book_Image { set; get; }
+        public string book_Slug { set; get; }
         public int book_Price { set; get; }
         public int book_Quantity { set; get; }
         public int total_Money
@@ -23,6 +24,7 @@ namespace shopping.Models
             Book b = db.Books.Single(x => x.book_Id == book_Id);
             book_Name = b.book_Title;
             book_Image = b.book_Image;
+            book_Slug = b.book_Slug;
             book_Price = int.Parse(b.book_Price.ToString());
             book_Quantity = 1;
         }

@@ -11,14 +11,15 @@ namespace shopping.Controllers
     public class HomeController : System.Web.Mvc.Controller
     {
         public shopEntities db = new shopEntities();
-        public ActionResult Index(int? page)
-        {
-            var book = db.Books.OrderBy(x => x.book_Title);
-            int pageSize =6;
 
-            int pageNumber = (page ?? 1);
-            return View(book.ToPagedList(pageNumber,pageSize));
+        public ActionResult Index(string sortDisplay)
+        {
+
+            var book = db.Books.OrderBy(x => x.book_Title);
+            return View();
         }
+        
+    
         public ActionResult CategoryPartial()
         {
             var category = db.Categories.ToList();
