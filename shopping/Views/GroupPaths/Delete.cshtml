@@ -4,38 +4,39 @@
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/Admin_Layout.cshtml";
 }
+<div id="content" class="span10">
+    <h2>Xoa Group</h2>
 
-<h2>Delete</h2>
+    <div>
+        <h4>GroupPath</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Group.groupName)
+            </dt>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>GroupPath</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Group.groupName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Group.groupName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Group.groupName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Path.pathName)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Path.pathName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Path.pathName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Path.pathName)
-        </dd>
+        </dl>
 
-    </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
-</div>
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+    </div>

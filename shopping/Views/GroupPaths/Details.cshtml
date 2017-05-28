@@ -4,32 +4,33 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/Admin_Layout.cshtml";
 }
+<div id="content" class="span10">
+    <h2>Chi Tiết GroupPath</h2>
 
-<h2>Details</h2>
+    <div>
+        <h4>GroupPath</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Group.groupName)
+            </dt>
 
-<div>
-    <h4>GroupPath</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Group.groupName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Group.groupName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Group.groupName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Path.pathName)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Path.pathName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Path.pathName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Path.pathName)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    </div>

@@ -1,19 +1,17 @@
 ﻿@model shopping.Models.Account
-
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/Admin_Layout.cshtml";
 }
 
-<h2>Thêm người dùng</h2>
-
-<div id="content" class="span10">
-    @using (Html.BeginForm())
+<div id="content" class="span10" style="height:auto;">
+ <div>
+     @using (Html.BeginForm())
     {
+        <h2>Thêm người dùng</h2>
         @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            <h4>Account</h4>
+        <div class="form-horizontal" >
             <hr />
             @Html.ValidationSummary(true)
             <div class="form-group">
@@ -23,7 +21,6 @@
                     @Html.ValidationMessageFor(model => model.accountName)
                 </div>
             </div>
-
             <div class="form-group">
                 @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -31,7 +28,6 @@
                     @Html.ValidationMessageFor(model => model.password)
                 </div>
             </div>
-
             <div class="form-group">
                 @Html.LabelFor(model => model.fullName, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -39,7 +35,6 @@
                     @Html.ValidationMessageFor(model => model.fullName)
                 </div>
             </div>
-
             <div class="form-group">
                 @Html.LabelFor(model => model.imagePath, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -47,7 +42,6 @@
                     @Html.ValidationMessageFor(model => model.imagePath)
                 </div>
             </div>
-
             <div class="form-group">
                 @Html.LabelFor(model => model.birthDay, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -55,7 +49,6 @@
                     @Html.ValidationMessageFor(model => model.birthDay)
                 </div>
             </div>
-
             <div class="form-group">
                 @Html.LabelFor(model => model.phone, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -63,7 +56,6 @@
                     @Html.ValidationMessageFor(model => model.phone)
                 </div>
             </div>
-
             <div class="form-group">
                 @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -71,7 +63,6 @@
                     @Html.ValidationMessageFor(model => model.email)
                 </div>
             </div>
-
             <div class="form-group">
                 @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -79,7 +70,6 @@
                     @Html.ValidationMessageFor(model => model.address)
                 </div>
             </div>
-
             <div class="form-group">
                 @Html.LabelFor(model => model.createDate, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -88,7 +78,6 @@
                 </div>
             </div>
 
-            
             <div class="form-group">
                 @Html.LabelFor(model => model.groupId, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -96,7 +85,6 @@
                     @Html.ValidationMessageFor(model => model.groupId)
                 </div>
             </div>
-
             <div class="form-group">
                 @Html.LabelFor(model => model.active, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -104,16 +92,20 @@
                     @Html.ValidationMessageFor(model => model.active)
                 </div>
             </div>
-
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
+                 <a style="padding-right:20px;" href="@Url.Action("Index")">Danh Sách Nhân Viên</a>  
+                    <input type="submit" value="Create" class="btn btn-default" />  
+                    <div>
+                       
+                    </div>                
+                </div>               
             </div>
         </div>
+   
+      
     }
-
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
-    </div>
+       
+    
+</div>
+</div>

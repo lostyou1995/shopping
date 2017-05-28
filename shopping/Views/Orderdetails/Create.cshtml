@@ -4,65 +4,66 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/Admin_Layout.cshtml";
 }
+<div id="content" class="span10">
+    <h2>Tạo Chi Tiết Hoá Đơn</h2>
 
-<h2>Create</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Orderdetail</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-        <div class="form-group">
-            @Html.LabelFor(model => model.orderdetail_book_Id, "orderdetail_book_Id", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("orderdetail_book_Id", String.Empty)
-                @Html.ValidationMessageFor(model => model.orderdetail_book_Id)
+        <div class="form-horizontal">
+            <h4>Orderdetail</h4>
+            <hr />
+            @Html.ValidationSummary(true)
+            <div class="form-group">
+                @Html.LabelFor(model => model.orderdetail_book_Id, "orderdetail_book_Id", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("orderdetail_book_Id", String.Empty)
+                    @Html.ValidationMessageFor(model => model.orderdetail_book_Id)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.orderdetail_Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.orderdetail_Quantity)
+                    @Html.ValidationMessageFor(model => model.orderdetail_Quantity)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.orderdetail_Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.orderdetail_Price)
+                    @Html.ValidationMessageFor(model => model.orderdetail_Price)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.orderdetail_Total, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.orderdetail_Total)
+                    @Html.ValidationMessageFor(model => model.orderdetail_Total)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.details_Id, "details_Id", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("details_Id", String.Empty)
+                    @Html.ValidationMessageFor(model => model.details_Id)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
             </div>
         </div>
+    }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.orderdetail_Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.orderdetail_Quantity)
-                @Html.ValidationMessageFor(model => model.orderdetail_Quantity)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.orderdetail_Price, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.orderdetail_Price)
-                @Html.ValidationMessageFor(model => model.orderdetail_Price)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.orderdetail_Total, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.orderdetail_Total)
-                @Html.ValidationMessageFor(model => model.orderdetail_Total)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.details_Id, "details_Id", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("details_Id", String.Empty)
-                @Html.ValidationMessageFor(model => model.details_Id)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    </div>

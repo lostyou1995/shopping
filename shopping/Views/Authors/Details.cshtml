@@ -5,31 +5,33 @@
     Layout = "~/Views/Shared/Admin_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
-<div id="content" class="span10" >
-    <h4>Author</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.author_Name)
-        </dt>
+<div id="content" class="span10">
+    <div>
 
-        <dd>
-            @Html.DisplayFor(model => model.author_Name)
-        </dd>
+        <h2>Chi Tiết Tác Giả</h2>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.author_Name)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.author_Slug)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.author_Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.author_Slug)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.author_Slug)
+            </dt>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.author_Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            <dd>
+                @Html.DisplayFor(model => model.author_Slug)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.author_Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    </div>

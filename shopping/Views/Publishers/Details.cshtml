@@ -4,32 +4,35 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/Admin_Layout.cshtml";
 }
+<div id="content" class="span10">
+    <div>
+    <h2>Chi Tiết Nhà Xuất Bản</h2>
 
-<h2>Details</h2>
+    <div>
+        <h4></h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.publisher_Name)
+            </dt>
 
-<div>
-    <h4>Publisher</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.publisher_Name)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.publisher_Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.publisher_Name)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.publisher_Slug)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.publisher_Slug)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.publisher_Slug)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.publisher_Slug)
-        </dd>
-
-    </dl>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.publisher_Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+        </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.publisher_Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

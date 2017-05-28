@@ -4,55 +4,58 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Admin_Layout.cshtml";
 }
+<div id="content" class="span10">
 
-<h2>Index</h2>
+    <h2>Trang Chi Tiết Hoá Đơn</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.orderdetail_Quantity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.orderdetail_Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.orderdetail_Total)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Book.book_Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Order.detail_Id)
-        </th>
-        <th></th>
-    </tr>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.orderdetail_Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.orderdetail_Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.orderdetail_Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book.book_Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order.detail_Id)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.orderdetail_Quantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.orderdetail_Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.orderdetail_Total)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Book.book_Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Order.detail_Id)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.orderdetail_Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.orderdetail_Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.orderdetail_Id })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.orderdetail_Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.orderdetail_Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.orderdetail_Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Book.book_Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order.detail_Id)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.orderdetail_Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.orderdetail_Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.orderdetail_Id })
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+    </div>

@@ -4,70 +4,72 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Admin_Layout.cshtml";
 }
-
 <div id="content" class="span10">
-    <h2>Index</h2>
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.pathName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.pathDescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.pathUrl)
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.imageUrl)
-            </th>*@
-            @*<th>
-                @Html.DisplayNameFor(model => model.display)
-            </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.parentId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.active)
-            </th>
-            <th></th>
-        </tr>
+    <div>
+        <h2>Trang Quản Lý Đường Dẫn</h2>
 
-        @foreach (var item in Model)
-        {
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.pathName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.pathDescription)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.pathUrl)
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.imageUrl)
-                </td>*@
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.display)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.parentId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.active)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.pathName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.pathDescription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.pathUrl)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.imageUrl)
+                    </th>*@
+                @*<th>
+                        @Html.DisplayNameFor(model => model.display)
+                    </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.parentId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.active)
+                </th>
+                <th></th>
             </tr>
-        }
 
-    </table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pathName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pathDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pathUrl)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.imageUrl)
+                        </td>*@
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.display)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.parentId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.active)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
     </div>

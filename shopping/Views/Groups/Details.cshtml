@@ -4,40 +4,41 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/Admin_Layout.cshtml";
 }
+<div id="content" class="span10">
+    <h2>Chi Tiết</h2>
 
-<h2>Details</h2>
+    <div>
+        <h4>Group</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.groupName)
+            </dt>
 
-<div>
-    <h4>Group</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.groupName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.groupName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.groupName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.parentId)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.parentId)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.parentId)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.parentId)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.active)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.active)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.active)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.active)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    </div>
