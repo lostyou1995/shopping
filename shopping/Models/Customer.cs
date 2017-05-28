@@ -9,7 +9,6 @@
 
 namespace shopping.Models
 {
-    using System.ComponentModel.DataAnnotations;
     using System;
     using System.Collections.Generic;
     
@@ -21,7 +20,6 @@ namespace shopping.Models
         }
     
         public int customer_Id { get; set; }
-        [Required]
         public string customer_Fullname { get; set; }
         public string customer_Address { get; set; }
         public string customer_Phone { get; set; }

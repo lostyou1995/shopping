@@ -64,7 +64,7 @@ namespace shopping.Controllers
         }
 
         // GET: /Book/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id,string slug)
         {
             if (id == null)
             {
@@ -132,28 +132,10 @@ namespace shopping.Controllers
             }
             base.Dispose(disposing);
         }
-        public ActionResult BookPartial(int? page, string sortdisplay)
+        public ActionResult BookPartial(int? page)
         {
             var book = db.Books.ToList();
-            switch (sortdisplay)
-            { 
-                case "descPrice":
-                    book = db.Books.OrderByDescending(x => x.book_Price).ToList();
-                    break;
-                case "ascPrice":
-                    book = db.Books.OrderBy(x => x.book_Price).ToList();
-                    break;
-                case "descName":
-                    book = db.Books.OrderByDescending(x => x.book_Title).ToList();
-                    break;
-                case "ascName":
-                    book = db.Books.OrderBy(x => x.book_Title).ToList();
-                    break;
-                default:
-                    book = db.Books.OrderBy(x => x.book_Title).ToList();
-                    break;
-            }
-            ViewBag.sortCurrent = sortdisplay;
+           
             //number product on page
             int pageSize = 6;
             //neu khong du 6sp/trang thi so trang mac dinh la 1;

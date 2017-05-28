@@ -1,0 +1,55 @@
+﻿@using shopping.Models;
+@model List<Cartitem>
+@{
+    ViewBag.Title = "Chỉnh sửa giỏ hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-sm-9">
+    <h2 class="title text-center">Giỏ hàng của bạn</h2>
+    <table class="table table-striped">
+        <tr>
+            <td>Mã sách</td>
+            <td>Tên sách</td>
+            <td>Ảnh</td>
+            <td>Đơn giá</td>
+            <td>Số lượng</td>
+            <td>Thành tiền</td>
+        </tr>
+        @{
+            foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>@item.book_Id</td>
+                    <td class="textTransform">@item.book_Name</td>
+                    <td>
+                        <img src="~/Content/fontEnd/images/book/@item.book_Image" width="50" height="50" />
+                    </td>
+                    <td>@String.Format("{0:0,0}", @item.book_Price)</td>
+                    @using (Html.BeginForm("UpdateCartitem", "CartItem", new { @id = item.book_Id }))
+                    {
+                        <td>
+                            @Html.TextBox("txtQuantity", @item.book_Quantity, new { @class = "form-control", @onmouseout = "check_Quantity()" })
+                        <input type="submit" value="Cập nhật" class="btn btn-success" />
+                    </td>
+                                            <td>@String.Format("{0:0,0}", @item.total_Money)</td>
+
+                    }
+
+                </tr>
+            }
+
+        }
+        <tr></tr>
+    </table>
+    <script>
+        function check_Quantity() {
+            var quantity = document.getElementById("txtQuantity").value;
+            if (isNaN(quantity)) {
+                { alert("Vui lòng nhập số lượng !!!"); }
+            } else
+                if (quantity < 1) { alert("Số lượng tối thiểu là 1 !!!"); }
+            if (quantity >= 10) { alert("Số lượng tối đa là 10 !!!"); }
+        }
+    </script>
+</div>

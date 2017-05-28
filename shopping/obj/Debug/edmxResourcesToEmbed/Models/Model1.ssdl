@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="shop1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="accountName" Type="nvarchar" MaxLength="50" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+    <Property Name="fullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="imagePath" Type="nvarchar" MaxLength="500" />
+    <Property Name="birthDay" Type="datetime" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar" MaxLength="500" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="groupId" Type="int" />
+    <Property Name="active" Type="int" />
+  </EntityType>
+  <EntityType Name="AccountGroup">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="groupId" Type="int" />
+    <Property Name="accountId" Type="int" />
+    <Property Name="active" Type="int" />
+  </EntityType>
+  <EntityType Name="Author">
+    <Key>
+      <PropertyRef Name="author_Id" />
+    </Key>
+    <Property Name="author_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="author_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="author_Slug" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="book_Id" />
+    </Key>
+    <Property Name="book_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="book_Title" Type="nvarchar" MaxLength="250" />
+    <Property Name="book_Description" Type="ntext" />
+    <Property Name="book_Price" Type="int" />
+    <Property Name="book_Quantity" Type="int" />
+    <Property Name="book_Image" Type="nvarchar" MaxLength="50" />
+    <Property Name="book_Year" Type="int" />
+    <Property Name="subcategory_Id" Type="int" />
+    <Property Name="publisher_Id" Type="int" />
+    <Property Name="book_Slug" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Book_Author">
+    <Key>
+      <PropertyRef Name="book_Id" />
+      <PropertyRef Name="author_Id" />
+    </Key>
+    <Property Name="book_Id" Type="int" Nullable="false" />
+    <Property Name="author_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="category_Id" />
+    </Key>
+    <Property Name="category_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="category_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="category_Slug" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="customer_Id" />
+    </Key>
+    <Property Name="customer_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customer_Fullname" Type="nvarchar" MaxLength="50" />
+    <Property Name="customer_Address" Type="nvarchar" MaxLength="150" />
+    <Property Name="customer_Phone" Type="nvarchar" MaxLength="11" />
+    <Property Name="customer_Email" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="groupName" Type="nvarchar" MaxLength="50" />
+    <Property Name="parentId" Type="int" />
+    <Property Name="active" Type="int" />
+  </EntityType>
+  <EntityType Name="GroupPath">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="groupId" Type="int" />
+    <Property Name="pathId" Type="int" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="detail_Id" />
+    </Key>
+    <Property Name="detail_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customer_Id" Type="int" Nullable="false" />
+    <Property Name="order_Datetime" Type="datetime" />
+    <Property Name="order_Status" Type="bigint" />
+  </EntityType>
+  <EntityType Name="Orderdetail">
+    <Key>
+      <PropertyRef Name="orderdetail_Id" />
+    </Key>
+    <Property Name="orderdetail_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="orderdetail_book_Id" Type="int" />
+    <Property Name="orderdetail_Quantity" Type="int" />
+    <Property Name="orderdetail_Price" Type="int" />
+    <Property Name="orderdetail_Total" Type="int" />
+    <Property Name="details_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="Path">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pathName" Type="nvarchar" MaxLength="50" />
+    <Property Name="pathDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="pathUrl" Type="nvarchar" MaxLength="500" />
+    <Property Name="imageUrl" Type="nvarchar" MaxLength="500" />
+    <Property Name="display" Type="int" />
+    <Property Name="parentId" Type="int" />
+    <Property Name="active" Type="int" />
+  </EntityType>
+  <EntityType Name="Publisher">
+    <Key>
+      <PropertyRef Name="publisher_Id" />
+    </Key>
+    <Property Name="publisher_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="publisher_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="publisher_Slug" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Sub_Category">
+    <Key>
+      <PropertyRef Name="subcategory_Id" />
+    </Key>
+    <Property Name="subcategory_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="subcategory_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="parent_CategoryId" Type="int" />
+    <Property Name="subcategory_Slug" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <Association Name="FK_AccountGroup_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="AccountGroup" Type="Self.AccountGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AccountGroup">
+        <PropertyRef Name="accountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AccountGroup_Group">
+    <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+    <End Role="AccountGroup" Type="Self.AccountGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="AccountGroup">
+        <PropertyRef Name="groupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Book_Author_Author">
+    <End Role="Author" Type="Self.Author" Multiplicity="1" />
+    <End Role="Book_Author" Type="Self.Book_Author" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Author">
+        <PropertyRef Name="author_Id" />
+      </Principal>
+      <Dependent Role="Book_Author">
+        <PropertyRef Name="author_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Book_Author_Book">
+    <End Role="Book" Type="Self.Book" Multiplicity="1" />
+    <End Role="Book_Author" Type="Self.Book_Author" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="book_Id" />
+      </Principal>
+      <Dependent Role="Book_Author">
+        <PropertyRef Name="book_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Book_Publisher">
+    <End Role="Publisher" Type="Self.Publisher" Multiplicity="0..1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Publisher">
+        <PropertyRef Name="publisher_Id" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="publisher_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Book_Sub_Category">
+    <End Role="Sub_Category" Type="Self.Sub_Category" Multiplicity="0..1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sub_Category">
+        <PropertyRef Name="subcategory_Id" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="subcategory_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupPath_Group">
+    <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+    <End Role="GroupPath" Type="Self.GroupPath" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GroupPath">
+        <PropertyRef Name="groupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupPath_Path">
+    <End Role="Path" Type="Self.Path" Multiplicity="0..1" />
+    <End Role="GroupPath" Type="Self.GroupPath" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Path">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="GroupPath">
+        <PropertyRef Name="pathId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="customer_Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="customer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orderdetail_Book">
+    <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
+    <End Role="Orderdetail" Type="Self.Orderdetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="book_Id" />
+      </Principal>
+      <Dependent Role="Orderdetail">
+        <PropertyRef Name="orderdetail_book_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orderdetail_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="Orderdetail" Type="Self.Orderdetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="detail_Id" />
+      </Principal>
+      <Dependent Role="Orderdetail">
+        <PropertyRef Name="details_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sub_Category_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Sub_Category" Type="Self.Sub_Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="category_Id" />
+      </Principal>
+      <Dependent Role="Sub_Category">
+        <PropertyRef Name="parent_CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="shop1ModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AccountGroup" EntityType="Self.AccountGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Book_Author" EntityType="Self.Book_Author" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupPath" EntityType="Self.GroupPath" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Orderdetail" EntityType="Self.Orderdetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Path" EntityType="Self.Path" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Publisher" EntityType="Self.Publisher" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sub_Category" EntityType="Self.Sub_Category" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AccountGroup_Account" Association="Self.FK_AccountGroup_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="AccountGroup" EntitySet="AccountGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AccountGroup_Group" Association="Self.FK_AccountGroup_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="AccountGroup" EntitySet="AccountGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Book_Author_Author" Association="Self.FK_Book_Author_Author">
+      <End Role="Author" EntitySet="Author" />
+      <End Role="Book_Author" EntitySet="Book_Author" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Book_Author_Book" Association="Self.FK_Book_Author_Book">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="Book_Author" EntitySet="Book_Author" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Book_Publisher" Association="Self.FK_Book_Publisher">
+      <End Role="Publisher" EntitySet="Publisher" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Book_Sub_Category" Association="Self.FK_Book_Sub_Category">
+      <End Role="Sub_Category" EntitySet="Sub_Category" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupPath_Group" Association="Self.FK_GroupPath_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="GroupPath" EntitySet="GroupPath" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupPath_Path" Association="Self.FK_GroupPath_Path">
+      <End Role="Path" EntitySet="Path" />
+      <End Role="GroupPath" EntitySet="GroupPath" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orderdetail_Book" Association="Self.FK_Orderdetail_Book">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="Orderdetail" EntitySet="Orderdetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orderdetail_Order" Association="Self.FK_Orderdetail_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="Orderdetail" EntitySet="Orderdetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sub_Category_Category" Association="Self.FK_Sub_Category_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Sub_Category" EntitySet="Sub_Category" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

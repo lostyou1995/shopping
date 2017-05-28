@@ -2,39 +2,50 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
 }
+<div id="content" class="span10">
 
-<h2>Index</h2>
+    <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.category_Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.category_Slug)
-        </th>
-        <th></th>
-    </tr>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.category_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.category_Slug)
+            </th>
+            <th class="textTransform">hành động</th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.category_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.category_Slug)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.category_Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.category_Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.category_Id })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.category_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.category_Slug)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit","Category",new { @id=item.category_Id})" title="Chỉnh sửa">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
+                    
+                    <a href="@Url.Action("Details","Category",new { @id=item.category_Id})" title="Chi tiết">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </a>
+                    
+                    <a href="@Url.Action("Delete","Category",new { @id=item.category_Id})" title="Xoá" style="color:red">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+    </div>

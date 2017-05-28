@@ -2,51 +2,61 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
 }
 
 <h2>Index</h2>
+<div id="content" class="span10">
+    <p>
+        <a style="color:blue">@Html.ActionLink("Tạo khách hàng mới", "Create")</a>
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+               Tên Đầy Đủ
+            </th>
+            <th>
+                 Địa Chỉ
+            </th>
+            <th>
+                   Số Điện Thoại
+            </th>
+            <th>
+                Email
+            </th>
+            <th>Hành Động</th>
+        </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.customer_Fullname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.customer_Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.customer_Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.customer_Email)
-        </th>
-        <th></th>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.customer_Fullname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.customer_Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.customer_Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.customer_Email)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "Customer", new { @id = item.customer_Id })" title="Chỉnh sửa">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    </a>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.customer_Fullname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.customer_Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.customer_Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.customer_Email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.customer_Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.customer_Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.customer_Id })
-        </td>
-    </tr>
-}
+                    <a href="@Url.Action("Details", "Customer", new { @id = item.customer_Id })" title="Chi tiết">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    </a>
 
-</table>
+                    <a href="@Url.Action("Delete", "Customer", new { @id = item.customer_Id })" title="Xoá" style="color:red">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>

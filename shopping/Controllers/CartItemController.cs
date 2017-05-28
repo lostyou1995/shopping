@@ -140,34 +140,46 @@ namespace shopping.Controllers
             {
                 RedirectToAction("Index", "Home");
             }
-            ViewBag.Message = "";
             //add order
-            Order ord = new Order();
+            Order ord = new Order(); 
             Customer cus = new Customer();
-            //add customer
-            cus.customer_Fullname = Request.Form["customer_Fullname"];
-            cus.customer_Address=Request.Form["customer_Address"];
-            cus.customer_Phone = Request.Form["customer_Phone"];
-            cus.customer_Email = Request.Form["customer_Email"];
-            db.Customers.Add(cus);
-            db.SaveChanges();
-            //add order
-            ord.customer_Id=cus.customer_Id;
-            ord.order_Datetime=DateTime.Now;
-            ord.order_Status=0;
-            db.Orders.Add(ord);
-            db.SaveChanges();
-            List<Cartitem> listcartitem = GetCartitem();
-            foreach (var item in listcartitem)
+            Account acc = new Account();
+            if (Session["Account"] != null)
             {
-                Orderdetail ordetails = new Orderdetail();
-                ordetails.details_Id = ord.detail_Id;
-                ordetails.orderdetail_book_Id = item.book_Id;
-                ordetails.orderdetail_Quantity = item.book_Quantity;
-                ordetails.orderdetail_Total = item.total_Money;
-                ordetails.orderdetail_Price = item.book_Price;
-                db.Orderdetails.Add(ordetails);
+                acc = (Account)Session["Account"];
+                cus.customer_Fullname = acc.fullName;
+                cus.customer_Address = acc.address;
+                cus.customer_Phone = acc.phone;
+                cus.customer_Email = acc.email;
+                db.Customers.Add(cus);
+                db.SaveChanges();
             }
+            else
+            {
+                cus.customer_Fullname = Request.Form["customer_Fullname"];
+                cus.customer_Address = Request.Form["customer_Address"];
+                cus.customer_Phone = Request.Form["customer_Phone"];
+                cus.customer_Email = Request.Form["customer_Email"];
+                db.Customers.Add(cus);
+                db.SaveChanges();
+            }
+                //add order
+                ord.customer_Id = cus.customer_Id;
+                ord.order_Datetime = DateTime.Now;
+                ord.order_Status = 0;
+                db.Orders.Add(ord);
+                db.SaveChanges();
+                List<Cartitem> listcartitem = GetCartitem();
+                foreach (var item in listcartitem)
+                {
+                    Orderdetail ordetails = new Orderdetail();
+                    ordetails.details_Id = ord.detail_Id;
+                    ordetails.orderdetail_book_Id = item.book_Id;
+                    ordetails.orderdetail_Quantity = item.book_Quantity;
+                    ordetails.orderdetail_Total = item.total_Money;
+                    ordetails.orderdetail_Price = item.book_Price;
+                    db.Orderdetails.Add(ordetails);
+                }
             db.SaveChanges();
             return RedirectToAction("Index","Home");
         }

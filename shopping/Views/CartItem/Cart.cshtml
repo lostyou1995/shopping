@@ -44,9 +44,11 @@
         }
     </table>
     <div>
-        <h2 class="title text-center">Thông tin đặt hàng</h2>
+        
         @using (Html.BeginForm("BuyCart", "CartItem"))
-        {
+        {        
+             if(Session["Account"]==null)
+                    {<h2 class="title text-center">Thông tin đặt hàng</h2>
             <div class="form-group">
                 <label for="hoTen" class="textTransform">Họ tên đầy đủ</label>
                 <input type="text" class="form-control" id="customer_Fullname" placeholder="Họ và tên" name="customer_Fullname" onblur="fullname()">
@@ -67,8 +69,14 @@
                 <input type="email" class="form-control" id="customer_Email" placeholder="Địa chỉ Email" name="customer_Email" onblur="email()">
                 <div style="color:red" id="email" class="textTransform"></div>
             </div>
-            <input type="submit" value="Đặt hàng" class="btn btn-success" id="btnSubmit" disabled="disabled"/>
+                   <input type="submit" value="Đặt hàng" class="btn btn-success" id="btnSubmit" disabled="disabled"/>
+                <script src="~/Content/fontEnd/myscript/myScript.js"></script>            
         }
-        <script src="~/Content/fontEnd/myscript/myScript.js"></script>
+             else { 
+             <input type="submit" value="Đặt hàng" class="btn btn-success" id="btnSubmit"/>
+             }          
+            
+        }
+        
     </div>
 </div>

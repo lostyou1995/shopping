@@ -39,5 +39,6 @@ namespace shopping.Models
         public virtual DbSet<Publisher> Publishers { get; set; }
         public virtual DbSet<Sub_Category> Sub_Category { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Slider> Sliders { get; set; }
     }
 }

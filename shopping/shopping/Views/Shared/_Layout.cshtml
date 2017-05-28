@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Website bán sách</title>
+    @*Css*@
+    <link href="~/Content/fontEnd/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/fontEnd/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/fontEnd/css/prettyPhoto.css" rel="stylesheet" />
+    <link href="~/Content/fontEnd/css/price-range.css" rel="stylesheet" />
+    <link href="~/Content/fontEnd/css/animate.css" rel="stylesheet" />
+    <link href="~/Content/fontEnd/css/responsive.css" rel="stylesheet" />
+    <link href="~/Content/fontEnd/css/main.css" rel="stylesheet" />
+
+</head>
+<body>
+    <header id="header">
+        <!--header-->
+        <div class="header_top">
+            <!--header_top-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="social-network social-circle">
+
+                            <li><a href="#" class="icoVimeo" title="Phone number"><i class="fa fa-phone" aria-hidden="true"></i></a></li>
+                            <li><a href="#" class="icoRss" title="Send mail"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+                            <li><a href="https://www.facebook.com/holaotn" class="icoFacebook" title="Website bán sách online"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="skype:ngocphuoc1012" class="icoTwitter" title="Skype"><i class="fa fa-skype"></i></a></li>
+                            <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div><!--/header_top-->
+
+        <div class="header-bottom">
+            <!--header-bottom-->
+            <div class="container">
+
+            </div>
+        </div><!--/header-bottom-->
+    </header>
+    <!--Slider-->
+    <section id="slider">
+        <!--slider-->
+        <div class="container">
+            <div class="row">
+                <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="@Url.Action("Index","Home")">Muasach.com</a>
+                        </div>
+                        <ul class="nav navbar-nav">
+                            <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                            <li><a href="#">Liên hệ</a></li>
+                            <li>
+                                <a href="@Url.Action("Cart","CartItem")">
+                                    Giỏ hàng @Html.Action("CartitemPartial", "CartItem")
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="navbar-form navbar-right">
+                            @using (Html.BeginForm())
+                            { <div class="form-group">
+                                @Html.TextBox("txtSearch", "", htmlAttributes: new { @class = "form-control", @placeholder = "tìm kiếm tên, thể loại, tác giả,..." })
+                            </div>
+                                <button type="submit" class="btn btn-default">Tìm kiếm</button>
+                            }
+
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </section>
+    <!--EndSlider-->
+    <!--Body-->
+    <section>
+        <div class="container body-content">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="left-sidebar">
+                        <h2>Thể Loại</h2>
+
+                        <div class="panel-group category-products" id="accordian">
+                            <!--CATEGORY LIST-->
+                            @Html.Action("CategoryPartial", "Home")
+                        </div>
+
+                    </div>
+                </div>
+                @RenderBody()
+            </div>
+            </div>
+    </section>
+    <!--End Body-->
+    <footer id="footer">
+        <!--Footer-->
+
+        <div class="footer-widget">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Service</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="#">Online Help</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Order Status</a></li>
+                                <li><a href="#">Change Location</a></li>
+                                <li><a href="#">FAQ’s</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Quock Shop</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="#">T-Shirt</a></li>
+                                <li><a href="#">Mens</a></li>
+                                <li><a href="#">Womens</a></li>
+                                <li><a href="#">Gift Cards</a></li>
+                                <li><a href="#">Shoes</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Policies</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="#">Terms of Use</a></li>
+                                <li><a href="#">Privecy Policy</a></li>
+                                <li><a href="#">Refund Policy</a></li>
+                                <li><a href="#">Billing System</a></li>
+                                <li><a href="#">Ticket System</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>About Shopper</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="#">Company Information</a></li>
+                                <li><a href="#">Careers</a></li>
+                                <li><a href="#">Store Location</a></li>
+                                <li><a href="#">Affillate Program</a></li>
+                                <li><a href="#">Copyright</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-sm-offset-1">
+                        <div class="single-widget">
+                            <h2>About Shopper</h2>
+                            <form action="#" class="searchform">
+                                <input placeholder="Your email address" type="text">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
+                                <p>Get the most recent updates from <br>our site and be updated your self...</p>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <p class="pull-left">Copyright &copy; 2013 E-SHOPPER Inc. All rights reserved.</p>
+                    <p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="~/Content/fontEnd/js/jquery.js"></script>
+    <script src="~/Content/fontEnd/js/bootstrap.min.js"></script>
+    <script src="~/Content/fontEnd/js/jquery.scrollUp.min.js"></script>
+    <script src="~/Content/fontEnd/js/price-range.js"></script>
+    <script src="~/Content/fontEnd/js/jquery.prettyPhoto.js"></script>
+    <script src="~/Content/fontEnd/js/main.js"></script>
+    @*<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647;"><i class="fa fa-angle-up"></i></a>*@
+
+</body>
+<div id="fb-root"></div>
+<script>
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+</html>

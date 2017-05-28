@@ -10,14 +10,15 @@
     <Property Name="fullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="imagePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="birthDay" Type="DateTime" Precision="3" />
-    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
     <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="createDate" Type="DateTime" Precision="3" />
     <Property Name="lastLogin" Type="DateTime" Precision="3" />
     <Property Name="groupId" Type="Int32" />
     <Property Name="active" Type="Int32" />
     <NavigationProperty Name="AccountGroups" Relationship="Self.FK_AccountGroup_Account" FromRole="Account" ToRole="AccountGroup" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Account" FromRole="Account" ToRole="Order" />
   </EntityType>
   <EntityType Name="AccountGroup">
     <Key>
@@ -107,6 +108,8 @@
     <Property Name="customer_Id" Type="Int32" Nullable="false" />
     <Property Name="order_Datetime" Type="DateTime" Precision="3" />
     <Property Name="order_Status" Type="Int64" />
+    <Property Name="account_Id" Type="Int32" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_Order_Account" FromRole="Order" ToRole="Account" />
     <NavigationProperty Name="Customer" Relationship="Self.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
     <NavigationProperty Name="Orderdetails" Relationship="Self.FK_Orderdetail_Order" FromRole="Order" ToRole="Orderdetail" />
   </EntityType>
@@ -167,6 +170,14 @@
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
+  <EntityType Name="Slider">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="image_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="image_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
   <Association Name="FK_AccountGroup_Account">
     <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
     <End Role="AccountGroup" Type="Self.AccountGroup" Multiplicity="*" />
@@ -176,6 +187,18 @@
       </Principal>
       <Dependent Role="AccountGroup">
         <PropertyRef Name="accountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="account_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -306,9 +329,14 @@
     <EntitySet Name="Publishers" EntityType="Self.Publisher" />
     <EntitySet Name="Sub_Category" EntityType="Self.Sub_Category" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Sliders" EntityType="Self.Slider" />
     <AssociationSet Name="FK_AccountGroup_Account" Association="Self.FK_AccountGroup_Account">
       <End Role="Account" EntitySet="Accounts" />
       <End Role="AccountGroup" EntitySet="AccountGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Account" Association="Self.FK_Order_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Order" EntitySet="Orders" />
     </AssociationSet>
     <AssociationSet Name="FK_AccountGroup_Group" Association="Self.FK_AccountGroup_Group">
       <End Role="Group" EntitySet="Groups" />

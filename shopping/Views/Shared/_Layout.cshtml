@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using shopping.Models;
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -83,17 +84,37 @@
             <div class="row">
                 <nav class="navbar navbar-inverse">
                     <div class="container-fluid">
-                        <div class="navbar-header">
-                            <a class="navbar-brand" href="@Url.Action("Index","Home")">Muasach.com</a>
-                        </div>
+                      
                         <ul class="nav navbar-nav">
                             <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
                             <li><a href="#">Liên hệ</a></li>
+                            @{if (Session["Account"] == null)
+                            {
+                                <li>
+                                    <a href="@Url.Action("login","Home")">Đăng nhập
+                                    </a>
+                                </li>
+                                <li><a href="@Url.Action("Create","Accounts")">Đăng Ký</a></li>
+                            }
+                              else
+                              {
+                                  Account acc=(Account)Session["Account"];
+                                <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Xin Chào, @acc.fullName<span class="caret"></span></a>
+                                                <ul class="dropdown-menu">
+                                                  <li><a href="@Url.Action("Edit", "Accounts", new { id=@acc.id})">Đổi thông tin</a></li>
+                                                  <li><a href="#">Xem lịch sử mua hàng</a></li>
+                                                  <li><a href="@Url.Action("logout","Home")">Đăng xuất</a></li>
+                                                </ul>
+                                              </li>
+                              }
+                            }
                             <li>
                                 <a href="@Url.Action("Cart","CartItem")">
                                     Giỏ hàng @Html.Action("CartitemPartial", "CartItem")
                                 </a>
                             </li>
+
                         </ul>
                         <div class="navbar-form navbar-right">
                             @using (Html.BeginForm("SearchBook", "Book"))

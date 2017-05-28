@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="shopModelStoreContainer" CdmEntityContainer="BookContext">
+    <EntitySetMapping Name="Actions">
+      <EntityTypeMapping TypeName="shopModel.Action">
+        <MappingFragment StoreEntitySet="Action">
+          <ScalarProperty Name="action_Id" ColumnName="action_Id" />
+          <ScalarProperty Name="action_Name" ColumnName="action_Name" />
+          <ScalarProperty Name="action_Description" ColumnName="action_Description" />
+          <ScalarProperty Name="controller_Id" ColumnName="controller_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Authors">
+      <EntityTypeMapping TypeName="shopModel.Author">
+        <MappingFragment StoreEntitySet="Author">
+          <ScalarProperty Name="author_Id" ColumnName="author_Id" />
+          <ScalarProperty Name="author_Name" ColumnName="author_Name" />
+          <ScalarProperty Name="author_Address" ColumnName="author_Address" />
+          <ScalarProperty Name="author_Story" ColumnName="author_Story" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Books">
+      <EntityTypeMapping TypeName="shopModel.Book">
+        <MappingFragment StoreEntitySet="Book">
+          <ScalarProperty Name="book_Id" ColumnName="book_Id" />
+          <ScalarProperty Name="book_Title" ColumnName="book_Title" />
+          <ScalarProperty Name="book_Description" ColumnName="book_Description" />
+          <ScalarProperty Name="book_Price" ColumnName="book_Price" />
+          <ScalarProperty Name="book_Quantity" ColumnName="book_Quantity" />
+          <ScalarProperty Name="book_Image" ColumnName="book_Image" />
+          <ScalarProperty Name="book_Year" ColumnName="book_Year" />
+          <ScalarProperty Name="category_Id" ColumnName="category_Id" />
+          <ScalarProperty Name="publisher_Id" ColumnName="publisher_Id" />
+          <ScalarProperty Name="comment_Id" ColumnName="comment_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="shopModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="category_Id" ColumnName="category_Id" />
+          <ScalarProperty Name="category_Name" ColumnName="category_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="shopModel.Comment">
+        <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="comment_Id" ColumnName="comment_Id" />
+          <ScalarProperty Name="comment_Content" ColumnName="comment_Content" />
+          <ScalarProperty Name="comment_Date" ColumnName="comment_Date" />
+          <ScalarProperty Name="user_Id" ColumnName="user_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Controllers">
+      <EntityTypeMapping TypeName="shopModel.Controller">
+        <MappingFragment StoreEntitySet="Controller">
+          <ScalarProperty Name="controller_Id" ColumnName="controller_Id" />
+          <ScalarProperty Name="controller_Name" ColumnName="controller_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="shopModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="customer_Id" ColumnName="customer_Id" />
+          <ScalarProperty Name="customer_Fullname" ColumnName="customer_Fullname" />
+          <ScalarProperty Name="customer_Address" ColumnName="customer_Address" />
+          <ScalarProperty Name="customer_Phone" ColumnName="customer_Phone" />
+          <ScalarProperty Name="customer_Email" ColumnName="customer_Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="shopModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="orderdetail_Id" ColumnName="orderdetail_Id" />
+          <ScalarProperty Name="customer_Id" ColumnName="customer_Id" />
+          <ScalarProperty Name="order_Datetime" ColumnName="order_Datetime" />
+          <ScalarProperty Name="order_Status" ColumnName="order_Status" />
+          <ScalarProperty Name="user_Id" ColumnName="user_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orderdetails">
+      <EntityTypeMapping TypeName="shopModel.Orderdetail">
+        <MappingFragment StoreEntitySet="Orderdetail">
+          <ScalarProperty Name="orderdetail_Id" ColumnName="orderdetail_Id" />
+          <ScalarProperty Name="orderdetail_book_Id" ColumnName="orderdetail_book_Id" />
+          <ScalarProperty Name="orderdetail_Quantity" ColumnName="orderdetail_Quantity" />
+          <ScalarProperty Name="orderdetail_Price" ColumnName="orderdetail_Price" />
+          <ScalarProperty Name="orderdetail_Total" ColumnName="orderdetail_Total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Publishers">
+      <EntityTypeMapping TypeName="shopModel.Publisher">
+        <MappingFragment StoreEntitySet="Publisher">
+          <ScalarProperty Name="publisher_Id" ColumnName="publisher_Id" />
+          <ScalarProperty Name="publisher_name" ColumnName="publisher_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sub_Category">
+      <EntityTypeMapping TypeName="shopModel.Sub_Category">
+        <MappingFragment StoreEntitySet="Sub_Category">
+          <ScalarProperty Name="subcategory_Id" ColumnName="subcategory_Id" />
+          <ScalarProperty Name="subcategory_Name" ColumnName="subcategory_Name" />
+          <ScalarProperty Name="parent_CategoryId" ColumnName="parent_CategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="shopModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="user_Id" ColumnName="user_Id" />
+          <ScalarProperty Name="user_Username" ColumnName="user_Username" />
+          <ScalarProperty Name="user_Password" ColumnName="user_Password" />
+          <ScalarProperty Name="user_Fullname" ColumnName="user_Fullname" />
+          <ScalarProperty Name="user_Email" ColumnName="user_Email" />
+          <ScalarProperty Name="user_Admin" ColumnName="user_Admin" />
+          <ScalarProperty Name="user_Allowed" ColumnName="user_Allowed" />
+          <ScalarProperty Name="user_Address" ColumnName="user_Address" />
+          <ScalarProperty Name="user_Phone" ColumnName="user_Phone" />
+          <ScalarProperty Name="user_Image" ColumnName="user_Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Book_Author" TypeName="shopModel.Book_Author" StoreEntitySet="Book_Author">
+      <EndProperty Name="Author">
+        <ScalarProperty Name="author_Id" ColumnName="author_Id" />
+      </EndProperty>
+      <EndProperty Name="Book">
+        <ScalarProperty Name="book_Id" ColumnName="book_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Permission" TypeName="shopModel.Permission" StoreEntitySet="Permission">
+      <EndProperty Name="Action">
+        <ScalarProperty Name="action_Id" ColumnName="action_Id" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="user_Id" ColumnName="user_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

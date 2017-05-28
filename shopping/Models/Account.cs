@@ -17,6 +17,7 @@ namespace shopping.Models
         public Account()
         {
             this.AccountGroups = new HashSet<AccountGroup>();
+            this.Orders = new HashSet<Order>();
         }
     
         public int id { get; set; }
@@ -34,5 +35,6 @@ namespace shopping.Models
         public Nullable<int> active { get; set; }
     
         public virtual ICollection<AccountGroup> AccountGroups { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

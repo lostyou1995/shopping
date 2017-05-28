@@ -60,12 +60,43 @@ namespace shopping
                  url: "sach/tim-kiem/{f}",
                  defaults: new { controller = "Book", action = "SearchBook", f = UrlParameter.Optional }
                 );
+            routes.MapRoute(
+              name: "BookEdit",
+              url: "admin/sach/chinh-sua/{slug}-{id}",
+              defaults: new { controller = "Book", action = "Edit", id = UrlParameter.Optional, slug = UrlParameter.Optional }
+            );
 
+            routes.MapRoute(
+            name: "Register",
+            url: "dang-ky",
+            defaults: new { controller = "Accounts", action = "Create"}
+          );
+            routes.MapRoute(
+            name: "Login",
+            url: "dang-nhap",
+            defaults: new { controller = "Home", action = "login" }
+          );
+            routes.MapRoute(
+                name: "Loutout",
+                url: "dang-xuat",
+                defaults: new { controller = "Home", action = "logout" }
+                );
+            routes.MapRoute(
+                name: "EditAccount",
+                url: "chinh-sua-thong-tin-{id}",
+                defaults: new { controller = "Accounts", action = "Edit",id=UrlParameter.Optional }
+          );
+            routes.MapRoute(
+                name:"Administrator",
+                url:"trang-quan-tri",
+                defaults:new {controller="Admin",action="Index"}
+                );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
         }
     }
 }

@@ -1,0 +1,90 @@
+﻿@model shopping.Models.Account
+@{
+    ViewBag.Title = "Chình sửa thông tin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-sm-9">
+    <h2 class="title text-center">Chỉnh sửa thông tin của bạn</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.id)
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Tên tài khoản</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.accountName, new { @class = "form-control", @disabled ="true"})
+                    @Html.ValidationMessageFor(model => model.accountName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Mật khẩu</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.password, new { @class="form-control",@type="password"})
+                    @Html.ValidationMessageFor(model => model.password)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Tên hiển thị</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.fullName, new { @class="form-control"})
+                    @Html.ValidationMessageFor(model => model.fullName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Anh3 đại diện</label>
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.imagePath)*@
+                    <input type="file" name="image_Acount" id="image_Acount" class="form-control"/>
+                    @Html.ValidationMessageFor(model => model.imagePath)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Ngày sinh</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.birthDay, "{0:dd/MM/yyyy}", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.birthDay)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Số điện thoại</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.phone, new { @class="form-control"})
+                    @Html.ValidationMessageFor(model => model.phone)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Email</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.email, new { @class="form-control",@type="email"})
+                    @Html.ValidationMessageFor(model => model.email)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Địa chỉ</label>
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.address, new { @class="form-control"})
+                    @Html.ValidationMessageFor(model => model.address)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <a class="btn btn-default col-md-2" href="@Url.Action("Index","Home")">Hủy bỏ</a>
+                <div class="col-md-10">
+                    <input type="submit" value="Lưu lại" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+    }
+</div>

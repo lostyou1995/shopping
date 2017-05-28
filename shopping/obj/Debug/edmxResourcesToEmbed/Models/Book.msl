@@ -101,6 +101,7 @@
           <ScalarProperty Name="customer_Id" ColumnName="customer_Id" />
           <ScalarProperty Name="order_Datetime" ColumnName="order_Datetime" />
           <ScalarProperty Name="order_Status" ColumnName="order_Status" />
+          <ScalarProperty Name="account_Id" ColumnName="account_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -157,6 +158,15 @@
           <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
           <ScalarProperty Name="version" ColumnName="version" />
           <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sliders">
+      <EntityTypeMapping TypeName="shopModel.Slider">
+        <MappingFragment StoreEntitySet="Slider">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="image_Name" ColumnName="image_Name" />
+          <ScalarProperty Name="image_Description" ColumnName="image_Description" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

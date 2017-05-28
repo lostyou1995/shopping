@@ -1,0 +1,54 @@
+﻿@model IEnumerable<shopping.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<div id="content" class="span10">
+    <p>
+        <a style="color:blue">@Html.ActionLink("Tạo khách hàng mới", "Create")</a>
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.customer_Fullname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.customer_Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.customer_Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.customer_Email)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.customer_Fullname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.customer_Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.customer_Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.customer_Email)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.customer_Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.customer_Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.customer_Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>

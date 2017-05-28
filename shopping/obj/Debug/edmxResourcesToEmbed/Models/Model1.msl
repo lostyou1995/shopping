@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="shop1ModelStoreContainer" CdmEntityContainer="shopEntities">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="shop1Model.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="accountName" ColumnName="accountName" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="fullName" ColumnName="fullName" />
+          <ScalarProperty Name="imagePath" ColumnName="imagePath" />
+          <ScalarProperty Name="birthDay" ColumnName="birthDay" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="groupId" ColumnName="groupId" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccountGroups">
+      <EntityTypeMapping TypeName="shop1Model.AccountGroup">
+        <MappingFragment StoreEntitySet="AccountGroup">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="groupId" ColumnName="groupId" />
+          <ScalarProperty Name="accountId" ColumnName="accountId" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Authors">
+      <EntityTypeMapping TypeName="shop1Model.Author">
+        <MappingFragment StoreEntitySet="Author">
+          <ScalarProperty Name="author_Id" ColumnName="author_Id" />
+          <ScalarProperty Name="author_Name" ColumnName="author_Name" />
+          <ScalarProperty Name="author_Slug" ColumnName="author_Slug" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Books">
+      <EntityTypeMapping TypeName="shop1Model.Book">
+        <MappingFragment StoreEntitySet="Book">
+          <ScalarProperty Name="book_Id" ColumnName="book_Id" />
+          <ScalarProperty Name="book_Title" ColumnName="book_Title" />
+          <ScalarProperty Name="book_Description" ColumnName="book_Description" />
+          <ScalarProperty Name="book_Price" ColumnName="book_Price" />
+          <ScalarProperty Name="book_Quantity" ColumnName="book_Quantity" />
+          <ScalarProperty Name="book_Image" ColumnName="book_Image" />
+          <ScalarProperty Name="book_Year" ColumnName="book_Year" />
+          <ScalarProperty Name="subcategory_Id" ColumnName="subcategory_Id" />
+          <ScalarProperty Name="publisher_Id" ColumnName="publisher_Id" />
+          <ScalarProperty Name="book_Slug" ColumnName="book_Slug" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="shop1Model.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="category_Id" ColumnName="category_Id" />
+          <ScalarProperty Name="category_Name" ColumnName="category_Name" />
+          <ScalarProperty Name="category_Slug" ColumnName="category_Slug" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="shop1Model.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="customer_Id" ColumnName="customer_Id" />
+          <ScalarProperty Name="customer_Fullname" ColumnName="customer_Fullname" />
+          <ScalarProperty Name="customer_Address" ColumnName="customer_Address" />
+          <ScalarProperty Name="customer_Phone" ColumnName="customer_Phone" />
+          <ScalarProperty Name="customer_Email" ColumnName="customer_Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Groups">
+      <EntityTypeMapping TypeName="shop1Model.Group">
+        <MappingFragment StoreEntitySet="Group">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="groupName" ColumnName="groupName" />
+          <ScalarProperty Name="parentId" ColumnName="parentId" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupPaths">
+      <EntityTypeMapping TypeName="shop1Model.GroupPath">
+        <MappingFragment StoreEntitySet="GroupPath">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="groupId" ColumnName="groupId" />
+          <ScalarProperty Name="pathId" ColumnName="pathId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="shop1Model.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="detail_Id" ColumnName="detail_Id" />
+          <ScalarProperty Name="customer_Id" ColumnName="customer_Id" />
+          <ScalarProperty Name="order_Datetime" ColumnName="order_Datetime" />
+          <ScalarProperty Name="order_Status" ColumnName="order_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orderdetails">
+      <EntityTypeMapping TypeName="shop1Model.Orderdetail">
+        <MappingFragment StoreEntitySet="Orderdetail">
+          <ScalarProperty Name="orderdetail_Id" ColumnName="orderdetail_Id" />
+          <ScalarProperty Name="orderdetail_book_Id" ColumnName="orderdetail_book_Id" />
+          <ScalarProperty Name="orderdetail_Quantity" ColumnName="orderdetail_Quantity" />
+          <ScalarProperty Name="orderdetail_Price" ColumnName="orderdetail_Price" />
+          <ScalarProperty Name="orderdetail_Total" ColumnName="orderdetail_Total" />
+          <ScalarProperty Name="details_Id" ColumnName="details_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Paths">
+      <EntityTypeMapping TypeName="shop1Model.Path">
+        <MappingFragment StoreEntitySet="Path">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="pathName" ColumnName="pathName" />
+          <ScalarProperty Name="pathDescription" ColumnName="pathDescription" />
+          <ScalarProperty Name="pathUrl" ColumnName="pathUrl" />
+          <ScalarProperty Name="imageUrl" ColumnName="imageUrl" />
+          <ScalarProperty Name="display" ColumnName="display" />
+          <ScalarProperty Name="parentId" ColumnName="parentId" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Publishers">
+      <EntityTypeMapping TypeName="shop1Model.Publisher">
+        <MappingFragment StoreEntitySet="Publisher">
+          <ScalarProperty Name="publisher_Id" ColumnName="publisher_Id" />
+          <ScalarProperty Name="publisher_Name" ColumnName="publisher_Name" />
+          <ScalarProperty Name="publisher_Slug" ColumnName="publisher_Slug" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sub_Category">
+      <EntityTypeMapping TypeName="shop1Model.Sub_Category">
+        <MappingFragment StoreEntitySet="Sub_Category">
+          <ScalarProperty Name="subcategory_Id" ColumnName="subcategory_Id" />
+          <ScalarProperty Name="subcategory_Name" ColumnName="subcategory_Name" />
+          <ScalarProperty Name="parent_CategoryId" ColumnName="parent_CategoryId" />
+          <ScalarProperty Name="subcategory_Slug" ColumnName="subcategory_Slug" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Book_Author" TypeName="shop1Model.Book_Author" StoreEntitySet="Book_Author">
+      <EndProperty Name="Author">
+        <ScalarProperty Name="author_Id" ColumnName="author_Id" />
+      </EndProperty>
+      <EndProperty Name="Book">
+        <ScalarProperty Name="book_Id" ColumnName="book_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

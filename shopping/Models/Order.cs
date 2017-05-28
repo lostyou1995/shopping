@@ -23,7 +23,9 @@ namespace shopping.Models
         public int customer_Id { get; set; }
         public Nullable<System.DateTime> order_Datetime { get; set; }
         public Nullable<long> order_Status { get; set; }
+        public Nullable<int> account_Id { get; set; }
     
+        public virtual Account Account { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual ICollection<Orderdetail> Orderdetails { get; set; }
     }

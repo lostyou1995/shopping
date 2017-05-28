@@ -10,9 +10,9 @@
     <Property Name="fullName" Type="nvarchar" MaxLength="50" />
     <Property Name="imagePath" Type="nvarchar" MaxLength="500" />
     <Property Name="birthDay" Type="datetime" />
-    <Property Name="phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="phone" Type="nvarchar" MaxLength="11" />
     <Property Name="email" Type="nvarchar" MaxLength="50" />
-    <Property Name="address" Type="nvarchar" MaxLength="500" />
+    <Property Name="address" Type="nvarchar" MaxLength="150" />
     <Property Name="createDate" Type="datetime" />
     <Property Name="lastLogin" Type="datetime" />
     <Property Name="groupId" Type="int" />
@@ -101,6 +101,7 @@
     <Property Name="customer_Id" Type="int" Nullable="false" />
     <Property Name="order_Datetime" Type="datetime" />
     <Property Name="order_Status" Type="bigint" />
+    <Property Name="account_Id" Type="int" />
   </EntityType>
   <EntityType Name="Orderdetail">
     <Key>
@@ -133,6 +134,16 @@
     <Property Name="publisher_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="publisher_Name" Type="nvarchar" MaxLength="50" />
     <Property Name="publisher_Slug" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'shop.dbo.Slider' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Slider">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="image_Name" Type="ntext" />
+    <Property Name="image_Description" Type="ntext" />
   </EntityType>
   <EntityType Name="Sub_Category">
     <Key>
@@ -249,6 +260,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Order_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="account_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Order_Customer">
     <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
     <End Role="Order" Type="Self.Order" Multiplicity="*" />
@@ -313,6 +336,13 @@
     <EntitySet Name="Publisher" EntityType="Self.Publisher" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sub_Category" EntityType="Self.Sub_Category" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Slider" EntityType="Self.Slider" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Slider].[id] AS [id], 
+    [Slider].[image_Name] AS [image_Name], 
+    [Slider].[image_Description] AS [image_Description]
+    FROM [dbo].[Slider] AS [Slider]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_AccountGroup_Account" Association="Self.FK_AccountGroup_Account">
       <End Role="Account" EntitySet="Account" />
       <End Role="AccountGroup" EntitySet="AccountGroup" />
@@ -344,6 +374,10 @@
     <AssociationSet Name="FK_GroupPath_Path" Association="Self.FK_GroupPath_Path">
       <End Role="Path" EntitySet="Path" />
       <End Role="GroupPath" EntitySet="GroupPath" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Account" Association="Self.FK_Order_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Order" EntitySet="Order" />
     </AssociationSet>
     <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
       <End Role="Customer" EntitySet="Customer" />
