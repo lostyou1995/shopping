@@ -4,87 +4,76 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Admin_Layout.cshtml";
 }
-s
-<h2>Index</h2>
+
 <div id="content" class="span10">
-    <p>
-        @Html.ActionLink("Create New", "Create","Book")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.book_Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.book_Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.book_Price)
-            </th>
+    <div>
+        <h2>Trang Quản Lý Sách</h2>
+        <div>
+            <p>
+                @Html.ActionLink("Create New", "Create", "Book")
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.book_Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.book_Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.book_Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.book_Quantity)
+                    </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model.book_Image)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.book_Year)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.book_Slug)
-            </th>
-            <th>
-               Thể Loại
-            </th>
-            <th>
-                NXB
-            </th>
-            <th>Hành động</th>
-        </tr>
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.book_Title)
-        </td>
-        <td>
-            
-            @if (item.book_Description.Length < 50)
-            { @item.book_Description}
-            else { @item.book_Description.Substring(0, 50); }
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.book_Price)
-        </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Publisher.publisher_Name)
+                    </th>
+                    <th>Hành động</th>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.book_Image)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.book_Year)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.book_Slug)
-        </td>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.Sub_Category.subcategory_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Publisher.publisher_Name)
-        </td>
-        <td>
-            <a href="@Url.Action("Details", "Publisher", new { id = item.book_Id, slug = item.book_Slug })">
-                <i class="fa fa-info-circle" aria-hidden="true"></i>
-</a>
-            <a href="@Url.Action("Edit", "Publisher", new { id = item.book_Id, slug = item.book_Slug })">
-                <i class="fa fa-pencil" aria-hidden="true"></i>
-            </a>
-            <a href="@Url.Action("Delete", "Publisher", new { id = item.book_Id, slug = item.book_Slug })">
-                <i class="fa fa-times" aria-hidden="true"></i>
+                </tr>
 
-            </a>
-        </td>
-    </tr>
-}
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.book_Title)
+                        </td>
+                        <td>
+                            @if (item.book_Description.Length < 50)
+                            { @item.book_Description}
+                            else
+                            { @item.book_Description.Substring(0, 50);
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.book_Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.book_Quantity)
+                        </td>
 
-</table>
 
-</div>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Publisher.publisher_Name)
+                        </td>
+                        <td>
+
+                            <a href="@Url.Action("Edit","Book",new { id=item.book_Id})" title="Edit">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true">|</i>
+                            </a>
+                            <a href="@Url.Action("Details","Book",new  {id=item.book_Id})" title="Details">
+                                <i class="fa fa-info-circle" aria-hidden="true">|</i>
+                            </a>
+                            <a href="@Url.Action("Delete","Book", new { id= item.book_Id})" title="Xoá" style="color:red">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+    </div>

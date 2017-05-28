@@ -348,6 +348,7 @@ warning 6002: The table/view 'shop.dbo.Slider' does not have a primary key defin
     [Slider].[image_Description] AS [image_Description]
     FROM [dbo].[Slider] AS [Slider]</DefiningQuery>
           </EntitySet>
+
           <AssociationSet Name="FK_AccountGroup_Account" Association="Self.FK_AccountGroup_Account">
             <End Role="Account" EntitySet="Account" />
             <End Role="AccountGroup" EntitySet="AccountGroup" />
@@ -951,6 +952,7 @@ warning 6002: The table/view 'shop.dbo.Slider' does not have a primary key defin
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+
           <EntitySetMapping Name="Sliders">
             <EntityTypeMapping TypeName="shopModel.Slider">
               <MappingFragment StoreEntitySet="Slider">

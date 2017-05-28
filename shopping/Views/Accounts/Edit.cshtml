@@ -3,7 +3,6 @@
     ViewBag.Title = "Chình sửa thông tin";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="col-sm-9">
     <h2 class="title text-center">Chỉnh sửa thông tin của bạn</h2>
     @using (Html.BeginForm())
@@ -21,7 +20,6 @@
                     @Html.ValidationMessageFor(model => model.accountName)
                 </div>
             </div>
-
             <div class="form-group">
                 <label class="control-label col-md-2">Mật khẩu</label>
                 <div class="col-md-10">
@@ -29,7 +27,6 @@
                     @Html.ValidationMessageFor(model => model.password)
                 </div>
             </div>
-
             <div class="form-group">
                 <label class="control-label col-md-2">Tên hiển thị</label>
                 <div class="col-md-10">
@@ -37,7 +34,6 @@
                     @Html.ValidationMessageFor(model => model.fullName)
                 </div>
             </div>
-
             <div class="form-group">
                 <label class="control-label col-md-2">Anh3 đại diện</label>
                 <div class="col-md-10">
@@ -46,7 +42,6 @@
                     @Html.ValidationMessageFor(model => model.imagePath)
                 </div>
             </div>
-
             <div class="form-group">
                 <label class="control-label col-md-2">Ngày sinh</label>
                 <div class="col-md-10">
@@ -54,7 +49,6 @@
                     @Html.ValidationMessageFor(model => model.birthDay)
                 </div>
             </div>
-
             <div class="form-group">
                 <label class="control-label col-md-2">Số điện thoại</label>
                 <div class="col-md-10">
@@ -70,7 +64,6 @@
                     @Html.ValidationMessageFor(model => model.email)
                 </div>
             </div>
-
             <div class="form-group">
                 <label class="control-label col-md-2">Địa chỉ</label>
                 <div class="col-md-10">
@@ -88,3 +81,4 @@
         </div>
     }
 </div>
+

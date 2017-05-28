@@ -1,0 +1,36 @@
+﻿@model shopping.Models.GroupPath
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+<div id="content" class="span10">
+    <h2>Chi Tiết GroupPath</h2>
+
+    <div>
+        <h4>GroupPath</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Group.groupName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Group.groupName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Path.pathName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Path.pathName)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    </div>

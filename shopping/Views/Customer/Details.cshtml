@@ -5,49 +5,51 @@
     Layout = "~/Views/Shared/Admin_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2></h2>
 <div id="content" class="span10">
-
     <div>
-        <h4>Chi tiết thông tin khác hàng: @Html.DisplayFor(model => model.customer_Fullname)</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.customer_Fullname)
-            </dt>
+        
+        <div>
+            <h4>Chi tiết thông tin khác hàng: @Html.DisplayFor(model => model.customer_Fullname)</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.customer_Fullname)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.customer_Fullname)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.customer_Fullname)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.customer_Address)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.customer_Address)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.customer_Address)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.customer_Address)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.customer_Phone)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.customer_Phone)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.customer_Phone)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.customer_Phone)
+                </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.customer_Email)
-            </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.customer_Email)
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.customer_Email)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.customer_Email)
+                </dd>
 
-        </dl>
+            </dl>
+        </div>
+        <p>
+            
+            @Html.ActionLink("Trở lại danh sách khác hàng", "Index")|
+            @Html.ActionLink("Edit", "Edit", new { id = Model.customer_Id }) 
+        </p>
     </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.customer_Id }) |
-        @Html.ActionLink("Trở lại danh sách khác hàng", "Index")
-    </p>
-</div>

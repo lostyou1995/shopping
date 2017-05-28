@@ -172,13 +172,19 @@
     <Compile Include="Controllers\AccountGroupsController.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\BookController.cs" />
     <Compile Include="Controllers\CartItemController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\GroupPathsController.cs" />
+    <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderdetailsController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\PathsController.cs" />
     <Compile Include="Controllers\PublisherController.cs" />
+    <Compile Include="Controllers\Sub_CategoryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -240,9 +246,6 @@
       <DependentUpon>Book.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Sub_Category.cs">
-      <DependentUpon>Book.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Book.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -572,6 +575,11 @@
     <Content Include="Views\Admin\Delete.cshtml" />
     <Content Include="Views\Admin\Details.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\Publishers\Create.cshtml" />
+    <Content Include="Views\Publishers\Delete.cshtml" />
+    <Content Include="Views\Publishers\Details.cshtml" />
+    <Content Include="Views\Publishers\Edit.cshtml" />
+    <Content Include="Views\Publishers\Index.cshtml" />
     <Content Include="Views\Accounts\Create.cshtml" />
     <Content Include="Views\Accounts\Delete.cshtml" />
     <Content Include="Views\Accounts\Details.cshtml" />
@@ -588,6 +596,37 @@
     <Content Include="Views\Paths\Edit.cshtml" />
     <Content Include="Views\Paths\Index.cshtml" />
     <Content Include="Views\Home\login.cshtml" />
+    <Content Include="Views\Authors\Create.cshtml" />
+    <Content Include="Views\Authors\Delete.cshtml" />
+    <Content Include="Views\Authors\Details.cshtml" />
+    <Content Include="Views\Authors\Edit.cshtml" />
+    <Content Include="Views\Authors\Index.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Orderdetails\Create.cshtml" />
+    <Content Include="Views\Orderdetails\Delete.cshtml" />
+    <Content Include="Views\Orderdetails\Details.cshtml" />
+    <Content Include="Views\Orderdetails\Edit.cshtml" />
+    <Content Include="Views\Orderdetails\Index.cshtml" />
+    <Content Include="Views\Groups\Create.cshtml" />
+    <Content Include="Views\Groups\Delete.cshtml" />
+    <Content Include="Views\Groups\Details.cshtml" />
+    <Content Include="Views\Groups\Edit.cshtml" />
+    <Content Include="Views\Groups\Index.cshtml" />
+    <Content Include="Views\GroupPaths\Create.cshtml" />
+    <Content Include="Views\GroupPaths\Delete.cshtml" />
+    <Content Include="Views\GroupPaths\Details.cshtml" />
+    <Content Include="Views\GroupPaths\Edit.cshtml" />
+    <Content Include="Views\GroupPaths\Index.cshtml" />
+    <Content Include="Views\Sub_Category\Create.cshtml" />
+    <Content Include="Views\Sub_Category\Delete.cshtml" />
+    <Content Include="Views\Sub_Category\Details.cshtml" />
+    <Content Include="Views\Sub_Category\Edit.cshtml" />
+    <Content Include="Views\Sub_Category\Index.cshtml" />
+    <Content Include="Views\Book\DetailAnonymous.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

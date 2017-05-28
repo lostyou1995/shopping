@@ -5,106 +5,115 @@
     Layout = "~/Views/Shared/Admin_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<div id="content" class="span10">
 
-<div  id="content" class="span10">
-    <h4>Account</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.accountName)
-        </dt>
+    <div>
+        <h2>Chi Tiết Người Dùng</h2>
+        <h4></h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.id)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.accountName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.id)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.accountName)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.password)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.accountName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.password)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.password)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.fullName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.password)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.fullName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.fullName)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.imagePath)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.fullName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.imagePath)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.imagePath)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.birthDay)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.imagePath)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.birthDay)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.birthDay)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.phone)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.birthDay)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.phone)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.phone)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.email)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.phone)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.email)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.email)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.address)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.email)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.address)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.address)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.createDate)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.address)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.createDate)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.createDate)
+            </dt>
 
-        
+            <dd>
+                @Html.DisplayFor(model => model.createDate)
+            </dd>
 
-       
-        <dt>
-            @Html.DisplayNameFor(model => model.groupId)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.groupId)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.active)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.active)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.groupId)
+            </dt>
 
-    </dl>
+            <dd>
+                @Html.DisplayFor(model => model.groupId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.active)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.active)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

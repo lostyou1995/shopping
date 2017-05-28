@@ -17,28 +17,128 @@ namespace shopping.Controllers
         // GET: /Customer/
         public ActionResult Index()
         {
-            return View(db.Customers.ToList());
+
+            Account account = new Account();
+            try
+            {
+                account = (Account)Session["Account"];
+                if (account.groupId == 1)
+                {
+                    return View(db.Customers.ToList());
+                }
+                else
+                {
+                    var path = (from p in db.Paths
+                                join groupPath in db.GroupPaths on p.id equals groupPath.pathId
+                                join g in db.Groups on groupPath.groupId equals g.id
+                                join accGroup in db.AccountGroups on g.id equals accGroup.groupId
+                                join acc in db.Accounts on accGroup.accountId equals acc.id
+                                where acc.id == account.id
+                                select p).ToList();
+                    for (int i = 0; i < path.Count; i++)
+                    {
+                        if (path[i].pathUrl.CompareTo("/Customer/Index") == 0)
+                        {
+                            return View(db.Customers.ToList());
+                        }
+                        else { continue; }
+                    }
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            if (account == null) { return RedirectToAction("Index", "Home"); }
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: /Customer/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+
+            Account account = new Account();
+            try
+            {
+                account = (Account)Session["Account"];
+                if (account.groupId == 1)
+                {
+                    Customer customer = db.Customers.Find(id);
+                    if (customer == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(customer);
+                }
+                else
+                {
+                    var path = (from p in db.Paths
+                                join groupPath in db.GroupPaths on p.id equals groupPath.pathId
+                                join g in db.Groups on groupPath.groupId equals g.id
+                                join accGroup in db.AccountGroups on g.id equals accGroup.groupId
+                                join acc in db.Accounts on accGroup.accountId equals acc.id
+                                where acc.id == account.id
+                                select p).ToList();
+                    for (int i = 0; i < path.Count; i++)
+                    {
+                        if (path[i].pathUrl.CompareTo("/Customer/Details") == 0)
+                        {
+                            Customer customer = db.Customers.Find(id);
+                            if (customer == null)
+                            {
+                                return HttpNotFound();
+                            }
+                            return View(customer);
+                        }
+                        else { continue; }
+                    }
+                }
+            }
+            catch
             {
                 return RedirectToAction("Index", "Home");
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            return View(customer);
+            if (account == null) { return RedirectToAction("Index", "Home"); }
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: /Customer/Create
         public ActionResult Create()
         {
-            return View();
+
+            Account account = new Account();
+            try
+            {
+                account = (Account)Session["Account"];
+                if (account.groupId == 1)
+                {
+                    return View();
+                }
+                else
+                {
+                    var path = (from p in db.Paths
+                                join groupPath in db.GroupPaths on p.id equals groupPath.pathId
+                                join g in db.Groups on groupPath.groupId equals g.id
+                                join accGroup in db.AccountGroups on g.id equals accGroup.groupId
+                                join acc in db.Accounts on accGroup.accountId equals acc.id
+                                where acc.id == account.id
+                                select p).ToList();
+                    for (int i = 0; i < path.Count; i++)
+                    {
+                        if (path[i].pathUrl.CompareTo("/Customer/Create") == 0)
+                        {
+                            return View();
+                        }
+                        else { continue; }
+                    }
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            if (account == null) { return RedirectToAction("Index", "Home"); }
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: /Customer/Create
@@ -61,16 +161,51 @@ namespace shopping.Controllers
         // GET: /Customer/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+
+            Account account = new Account();
+            try
+            {
+                account = (Account)Session["Account"];
+                if (account.groupId == 1)
+                {
+                    Customer customer = db.Customers.Find(id);
+                    if (customer == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(customer);
+
+                }
+                else
+                {
+                    var path = (from p in db.Paths
+                                join groupPath in db.GroupPaths on p.id equals groupPath.pathId
+                                join g in db.Groups on groupPath.groupId equals g.id
+                                join accGroup in db.AccountGroups on g.id equals accGroup.groupId
+                                join acc in db.Accounts on accGroup.accountId equals acc.id
+                                where acc.id == account.id
+                                select p).ToList();
+                    for (int i = 0; i < path.Count; i++)
+                    {
+                        if (path[i].pathUrl.CompareTo("/Customer/Edit") == 0)
+                        {
+                            Customer customer = db.Customers.Find(id);
+                            if (customer == null)
+                            {
+                                return HttpNotFound();
+                            }
+                            return View(customer);
+                        }
+                        else { continue; }
+                    }
+                }
+            }
+            catch
             {
                 return RedirectToAction("Index", "Home");
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            return View(customer);
+            if (account == null) { return RedirectToAction("Index", "Home"); }
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: /Customer/Edit/5
@@ -92,16 +227,48 @@ namespace shopping.Controllers
         // GET: /Customer/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+
+            Account account = new Account();
+            try
+            {
+                account = (Account)Session["Account"];
+                if (account.groupId==1)
+                {
+                    Customer customer = db.Customers.Find(id);
+                    if (customer == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(customer);
+
+                }
+                var path = (from p in db.Paths
+                            join groupPath in db.GroupPaths on p.id equals groupPath.pathId
+                            join g in db.Groups on groupPath.groupId equals g.id
+                            join accGroup in db.AccountGroups on g.id equals accGroup.groupId
+                            join acc in db.Accounts on accGroup.accountId equals acc.id
+                            where acc.id == account.id
+                            select p).ToList();
+                for (int i = 0; i < path.Count; i++)
+                {
+                    if (path[i].pathUrl.CompareTo("/Customer/Delete") == 0)
+                    {
+                        Customer customer = db.Customers.Find(id);
+                        if (customer == null)
+                        {
+                            return HttpNotFound();
+                        }
+                        return View(customer);
+                    }
+                    else { continue; }
+                }
+            }
+            catch
             {
                 return RedirectToAction("Index", "Home");
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            return View(customer);
+            if (account == null) { return RedirectToAction("Index", "Home"); }
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: /Customer/Delete/5

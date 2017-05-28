@@ -17,28 +17,130 @@ namespace shopping.Controllers
         // GET: /Publisher/
         public ActionResult Index()
         {
-            return View(db.Publishers.ToList());
+            Account account = new Account();
+            try
+            {
+                account = (Account)Session["Account"];
+                if (account.groupId == 1)
+                {
+                    return View(db.Publishers.ToList());
+
+                }
+                else
+                {
+                    var path = (from p in db.Paths
+                                join groupPath in db.GroupPaths on p.id equals groupPath.pathId
+                                join g in db.Groups on groupPath.groupId equals g.id
+                                join accGroup in db.AccountGroups on g.id equals accGroup.groupId
+                                join acc in db.Accounts on accGroup.accountId equals acc.id
+                                where acc.id == account.id
+                                select p).ToList();
+                    for (int i = 0; i < path.Count; i++)
+                    {
+                        if (path[i].pathUrl.CompareTo("/Publishers/Index") == 0)
+                        {
+                            return View(db.Publishers.ToList());
+
+                        }
+                        else { continue; }
+                    }
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            if (account == null) { return RedirectToAction("Index", "Home"); }
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: /Publisher/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            Account account = new Account();
+            try
+            {
+                account = (Account)Session["Account"];
+                if (account.groupId == 1)
+                {
+                    Publisher pub = db.Publishers.Find(id);
+                    if (pub == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(pub);
+                }
+                else
+                {
+                    var path = (from p in db.Paths
+                                join groupPath in db.GroupPaths on p.id equals groupPath.pathId
+                                join g in db.Groups on groupPath.groupId equals g.id
+                                join accGroup in db.AccountGroups on g.id equals accGroup.groupId
+                                join acc in db.Accounts on accGroup.accountId equals acc.id
+                                where acc.id == account.id
+                                select p).ToList();
+                    for (int i = 0; i < path.Count; i++)
+                    {
+                        if (path[i].pathUrl.CompareTo("/Publishers/Details") == 0)
+                        {
+                            Publisher publisher = db.Publishers.Find(id);
+                            if (publisher == null)
+                            {
+                                return HttpNotFound();
+                            }
+                            return View(publisher);
+                        }
+                        else { continue; }
+                    }
+                }
+            }
+            catch
             {
                 return RedirectToAction("Index", "Home");
             }
-            Publisher publisher = db.Publishers.Find(id);
-            if (publisher == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            return View(publisher);
+            if (account == null) { return RedirectToAction("Index", "Home"); }
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: /Publisher/Create
         public ActionResult Create()
         {
-            return View();
+
+            Account account = new Account();
+            try
+            {
+                account = (Account)Session["Account"];
+                if (account.groupId == 1)
+                {
+
+                    return View();
+                }
+                else
+                {
+
+                    var path = (from p in db.Paths
+                                join groupPath in db.GroupPaths on p.id equals groupPath.pathId
+                                join g in db.Groups on groupPath.groupId equals g.id
+                                join accGroup in db.AccountGroups on g.id equals accGroup.groupId
+                                join acc in db.Accounts on accGroup.accountId equals acc.id
+                                where acc.id == account.id
+                                select p).ToList();
+                    for (int i = 0; i < path.Count; i++)
+                    {
+                        if (path[i].pathUrl.CompareTo("/Publishers/Create") == 0)
+                        {
+                            return View();
+                        }
+                        else { continue; }
+                    }
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            if (account == null) { return RedirectToAction("Index", "Home"); }
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: /Publisher/Create
@@ -61,16 +163,51 @@ namespace shopping.Controllers
         // GET: /Publisher/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+
+            Account account = new Account();
+            try
+            {
+                account = (Account)Session["Account"];
+                if (account.groupId == 1)
+                {
+                    Publisher publisher = db.Publishers.Find(id);
+                    if (publisher == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(publisher);
+
+                }
+                else
+                {
+                    var path = (from p in db.Paths
+                                join groupPath in db.GroupPaths on p.id equals groupPath.pathId
+                                join g in db.Groups on groupPath.groupId equals g.id
+                                join accGroup in db.AccountGroups on g.id equals accGroup.groupId
+                                join acc in db.Accounts on accGroup.accountId equals acc.id
+                                where acc.id == account.id
+                                select p).ToList();
+                    for (int i = 0; i < path.Count; i++)
+                    {
+                        if (path[i].pathUrl.CompareTo("/Publishers/Edit") == 0)
+                        {
+                            Publisher publisher = db.Publishers.Find(id);
+                            if (publisher == null)
+                            {
+                                return HttpNotFound();
+                            }
+                            return View(publisher);
+                        }
+                        else { continue; }
+                    }
+                }
+            }
+            catch
             {
                 return RedirectToAction("Index", "Home");
             }
-            Publisher publisher = db.Publishers.Find(id);
-            if (publisher == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            return View(publisher);
+            if (account == null) { return RedirectToAction("Index", "Home"); }
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: /Publisher/Edit/5
@@ -92,16 +229,50 @@ namespace shopping.Controllers
         // GET: /Publisher/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+
+            Account account = new Account();
+            try
+            {
+                account = (Account)Session["Account"];
+                if (account.groupId == 1)
+                {
+                    Publisher publisher = db.Publishers.Find(id);
+                    if (publisher == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(publisher);
+                }
+                else
+                {
+                    var path = (from p in db.Paths
+                                join groupPath in db.GroupPaths on p.id equals groupPath.pathId
+                                join g in db.Groups on groupPath.groupId equals g.id
+                                join accGroup in db.AccountGroups on g.id equals accGroup.groupId
+                                join acc in db.Accounts on accGroup.accountId equals acc.id
+                                where acc.id == account.id
+                                select p).ToList();
+                    for (int i = 0; i < path.Count; i++)
+                    {
+                        if (path[i].pathUrl.CompareTo("/Publishers/Delete") == 0)
+                        {
+                            Publisher publisher = db.Publishers.Find(id);
+                            if (publisher == null)
+                            {
+                                return HttpNotFound();
+                            }
+                            return View(publisher);
+                        }
+                        else { continue; }
+                    }
+                }
+            }
+            catch
             {
                 return RedirectToAction("Index", "Home");
             }
-            Publisher publisher = db.Publishers.Find(id);
-            if (publisher == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            return View(publisher);
+            if (account == null) { return RedirectToAction("Index", "Home"); }
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: /Publisher/Delete/5

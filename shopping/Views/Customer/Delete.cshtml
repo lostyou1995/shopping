@@ -4,58 +4,62 @@
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/Admin_Layout.cshtml";
 }
-
-
 <div id="content" class="span10">
-    <h2></h2>
-
-    <h3>Nếu bạn chắc chắn muốn xoá thông tin khách hàng hãy nhấn nút Xoá bên dưới<h3>
     <div>
-        <h4>Thông tin khách hàng muốn xoá</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.customer_Fullname)
-            </dt>
+        <div>
+            <h2>Xoá Khác hàng</h2>
 
-            <dd>
-                @Html.DisplayFor(model => model.customer_Fullname)
-            </dd>
+            <h3>
+                <h3>
+                    <div>
+                        @*  <h4>Thông tin khách hàng muốn xoá</h4>*@
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.customer_Fullname)
+                            </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.customer_Address)
-            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.customer_Fullname)
+                            </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.customer_Address)
-            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.customer_Address)
+                            </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.customer_Phone)
-            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.customer_Address)
+                            </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.customer_Phone)
-            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.customer_Phone)
+                            </dt>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.customer_Email)
-            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.customer_Phone)
+                            </dd>
 
-            <dd>
-                @Html.DisplayFor(model => model.customer_Email)
-            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.customer_Email)
+                            </dt>
 
-        </dl>
+                            <dd>
+                                @Html.DisplayFor(model => model.customer_Email)
+                            </dd>
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
+                        </dl>
 
-            <div class="form-actions no-color">
-                <input type="submit" value="Xoá" class="btn btn-default" /> |
-                @Html.ActionLink("Trở lại danh sách khác hàng", "Index")
-            </div>
-        }
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-actions no-color">
+                                
+                                @Html.ActionLink("Trở lại danh sách khác hàng", "Index")|
+                                <input type="submit" value="Xoá" class="btn btn-default" /> 
+                            </div>
+                        }
+                    </div>
+        </div>
     </div>
     </div>

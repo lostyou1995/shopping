@@ -1,0 +1,37 @@
+﻿@model shopping.Models.Author
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+
+<div id="content" class="span10">
+    <div>
+
+        <h2>Chi Tiết Tác Giả</h2>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.author_Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.author_Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.author_Slug)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.author_Slug)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.author_Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    </div>

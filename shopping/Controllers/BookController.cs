@@ -17,16 +17,52 @@ namespace shopping.Controllers
         // GET: /Book/
         public ActionResult Index()
         {
-            var books = db.Books.Include(b => b.Publisher).Include(b => b.Sub_Category);
-            return View(books.ToList());
+            Account account = new Account();
+            try
+            {
+                account = (Account)Session["Account"];
+                if (account.groupId == 1)
+                {
+                    var books = db.Books.Include(b => b.Publisher).Include(b => b.Sub_Category);
+                    return View(books.ToList());
+                   
+                }
+                else
+                {
+                    account = (Account)Session["Account"];
+                    var path = (from p in db.Paths
+                                join groupPath in db.GroupPaths on p.id equals groupPath.pathId
+                                join g in db.Groups on groupPath.groupId equals g.id
+                                join accGroup in db.AccountGroups on g.id equals accGroup.groupId
+                                join acc in db.Accounts on accGroup.accountId equals acc.id
+                                where acc.id == account.id
+                                select p).ToList();
+                    for (int i = 0; i < path.Count; i++)
+                    {
+                        if (path[i].pathUrl.CompareTo("/Book/Index") == 0)
+                        {
+
+                            var books = db.Books.Include(b => b.Publisher).Include(b => b.Sub_Category);
+                            return View(books.ToList());
+                        }
+                        else { continue; }
+                    }
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            if (account == null) { return RedirectToAction("Index", "Home"); }
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: /Book/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, string slug)
         {
-            if (id == null)
+                        if (id == null)
             {
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
             Book book = db.Books.Find(id);
             if (book == null)
@@ -39,9 +75,45 @@ namespace shopping.Controllers
         // GET: /Book/Create
         public ActionResult Create()
         {
-            ViewBag.publisher_Id = new SelectList(db.Publishers, "publisher_Id", "publisher_Name");
-            ViewBag.subcategory_Id = new SelectList(db.Sub_Category, "subcategory_Id", "subcategory_Name");
-            return View();
+
+            Account account = new Account();
+            try
+            {
+                account = (Account)Session["Account"];
+                if (account.groupId == 1)
+                {
+                    ViewBag.category_Id = new SelectList(db.Categories, "category_Id", "category_Name");
+                    ViewBag.publisher_Id = new SelectList(db.Publishers, "publisher_Id", "publisher_Name");
+                    return View();
+                }
+                else
+                {
+                    account = (Account)Session["Account"];
+                    var path = (from p in db.Paths
+                                join groupPath in db.GroupPaths on p.id equals groupPath.pathId
+                                join g in db.Groups on groupPath.groupId equals g.id
+                                join accGroup in db.AccountGroups on g.id equals accGroup.groupId
+                                join acc in db.Accounts on accGroup.accountId equals acc.id
+                                where acc.id == account.id
+                                select p).ToList();
+                    for (int i = 0; i < path.Count; i++)
+                    {
+                        if (path[i].pathUrl.CompareTo("/Book/Create") == 0)
+                        {
+                            ViewBag.category_Id = new SelectList(db.Categories, "category_Id", "category_Name");
+                            ViewBag.publisher_Id = new SelectList(db.Publishers, "publisher_Id", "publisher_Name");
+                            return View();
+                        }
+                        else { continue; }
+                    }
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            if (account == null) { return RedirectToAction("Index", "Home"); }
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: /Book/Create
@@ -66,18 +138,55 @@ namespace shopping.Controllers
         // GET: /Book/Edit/5
         public ActionResult Edit(int? id,string slug)
         {
-            if (id == null)
+
+            Account account = new Account();
+            try
+            {
+                account = (Account)Session["Account"];
+                if (account.groupId == 1)
+                {
+                    Book book = db.Books.Find(id);
+                    if (book == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    ViewBag.category_Id = new SelectList(db.Categories, "category_Id", "category_Name", book.subcategory_Id);
+                    ViewBag.publisher_Id = new SelectList(db.Publishers, "publisher_Id", "publisher_Name", book.publisher_Id);
+                    return View(book);
+                }
+                else
+                {
+                    account = (Account)Session["Account"];
+                    var path = (from p in db.Paths
+                                join groupPath in db.GroupPaths on p.id equals groupPath.pathId
+                                join g in db.Groups on groupPath.groupId equals g.id
+                                join accGroup in db.AccountGroups on g.id equals accGroup.groupId
+                                join acc in db.Accounts on accGroup.accountId equals acc.id
+                                where acc.id == account.id
+                                select p).ToList();
+                    for (int i = 0; i < path.Count; i++)
+                    {
+                        if (path[i].pathUrl.CompareTo("/Book/Edit") == 0)
+                        {
+                            Book book = db.Books.Find(id);
+                            if (book == null)
+                            {
+                                return HttpNotFound();
+                            }
+                            ViewBag.category_Id = new SelectList(db.Categories, "category_Id", "category_Name", book.subcategory_Id);
+                            ViewBag.publisher_Id = new SelectList(db.Publishers, "publisher_Id", "publisher_Name", book.publisher_Id);
+                            return View(book);
+                        }
+                        else { continue; }
+                    }
+                }
+            }
+            catch
             {
                 return RedirectToAction("Index", "Home");
             }
-            Book book = db.Books.Find(id);
-            if (book == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            ViewBag.publisher_Id = new SelectList(db.Publishers, "publisher_Id", "publisher_Name", book.publisher_Id);
-            ViewBag.subcategory_Id = new SelectList(db.Sub_Category, "subcategory_Id", "subcategory_Name", book.subcategory_Id);
-            return View(book);
+            if (account == null) { return RedirectToAction("Index", "Home"); }
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: /Book/Edit/5
@@ -85,7 +194,7 @@ namespace shopping.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="book_Id,book_Title,book_Description,book_Price,book_Quantity,book_Image,book_Year,subcategory_Id,publisher_Id,book_Slug")] Book book)
+        public ActionResult Edit([Bind(Include = "book_Id,book_Title,book_Description,book_Price,book_Quantity,book_Image,book_Year,category_Id,publisher_Id,book_Slug")] Book book)
         {
             if (ModelState.IsValid)
             {
@@ -101,16 +210,50 @@ namespace shopping.Controllers
         // GET: /Book/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            Account account = new Account();
+            try
+            {
+                account = (Account)Session["Account"];
+                if (account.groupId == 1)
+                {
+                    Book book = db.Books.Find(id);
+                    if (book == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(book);
+                }
+                else
+                {
+                    account = (Account)Session["Account"];
+                    var path = (from p in db.Paths
+                                join groupPath in db.GroupPaths on p.id equals groupPath.pathId
+                                join g in db.Groups on groupPath.groupId equals g.id
+                                join accGroup in db.AccountGroups on g.id equals accGroup.groupId
+                                join acc in db.Accounts on accGroup.accountId equals acc.id
+                                where acc.id == account.id
+                                select p).ToList();
+                    for (int i = 0; i < path.Count; i++)
+                    {
+                        if (path[i].pathUrl.CompareTo("/Book/Delete") == 0)
+                        {
+                            Book book = db.Books.Find(id);
+                            if (book == null)
+                            {
+                                return HttpNotFound();
+                            }
+                            return View(book);
+                        }
+                        else { continue; }
+                    }
+                }
+            }
+            catch
             {
                 return RedirectToAction("Index", "Home");
             }
-            Book book = db.Books.Find(id);
-            if (book == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            return View(book);
+            if (account == null) { return RedirectToAction("Index", "Home"); }
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: /Book/Delete/5
