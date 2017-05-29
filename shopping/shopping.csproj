@@ -248,6 +248,9 @@
     <Compile Include="Models\Sub_Category.cs">
       <DependentUpon>Book.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>Book.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -627,9 +630,11 @@
     <Content Include="Views\Sub_Category\Edit.cshtml" />
     <Content Include="Views\Sub_Category\Index.cshtml" />
     <Content Include="Views\Book\DetailAnonymous.cshtml" />
+    <Content Include="Views\Accounts\LogOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\fontEnd\images\avatar\" />
     <Folder Include="Content\fontEnd\images\banner\" />
   </ItemGroup>
   <ItemGroup>

@@ -92,6 +92,11 @@ namespace shopping
                 defaults:new {controller="Admin",action="Index"}
                 );
             routes.MapRoute(
+               name: "LogOrder",
+               url: "lich-su-mua-hang",
+               defaults: new { controller = "Accounts", action = "LogOrder" }
+               );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

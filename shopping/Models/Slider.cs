@@ -17,5 +17,6 @@ namespace shopping.Models
         public int id { get; set; }
         public string image_Name { get; set; }
         public string image_Description { get; set; }
+        public Nullable<int> active { get; set; }
     }
 }

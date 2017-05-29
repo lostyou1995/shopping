@@ -164,6 +164,7 @@
     <EntitySetMapping Name="Sliders">
       <EntityTypeMapping TypeName="shopModel.Slider">
         <MappingFragment StoreEntitySet="Slider">
+          <ScalarProperty Name="active" ColumnName="active" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="image_Name" ColumnName="image_Name" />
           <ScalarProperty Name="image_Description" ColumnName="image_Description" />

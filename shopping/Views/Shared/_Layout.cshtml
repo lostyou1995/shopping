@@ -5,7 +5,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Website bán sách</title>
-    @*Css*@
     <link href="~/Content/fontEnd/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/fontEnd/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Content/fontEnd/css/prettyPhoto.css" rel="stylesheet" />
@@ -88,7 +87,8 @@
                         <ul class="nav navbar-nav">
                             <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
                             <li><a href="#">Liên hệ</a></li>
-                            @{if (Session["Account"] == null)
+                            @{
+                                if (Session["Account"] == null)
                             {
                                 <li>
                                     <a href="@Url.Action("login","Home")">Đăng nhập
@@ -100,18 +100,21 @@
                               {
                                   Account acc=(Account)Session["Account"];
                                 <li class="dropdown">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Xin Chào, @acc.fullName<span class="caret"></span></a>
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <img src="@Url.Content("~/Content/fontEnd/images/avatar/" + acc.imagePath)" width="20" height="20">
+                                     @acc.fullName<span class="caret"></span></a>
                                                 <ul class="dropdown-menu">
                                                   <li><a href="@Url.Action("Edit", "Accounts", new { id=@acc.id})">Đổi thông tin</a></li>
-                                                  <li><a href="#">Xem lịch sử mua hàng</a></li>
-                                                  <li><a href="@Url.Action("logout","Home")">Đăng xuất</a></li>
+                                                    <li><a href="@Url.Action("LogOrder", "Accounts")">Xem lịch sử mua hàng</a></li>
+                                                  
+                                                    <li><a href="@Url.Action("logout","Home")">Đăng xuất</a></li>
                                                 </ul>
                                               </li>
                               }
                             }
                             <li>
                                 <a href="@Url.Action("Cart","CartItem")">
-                                    Giỏ hàng @Html.Action("CartitemPartial", "CartItem")
+                                    Giỏ hàng @Html.Action("CartitemPartial", "CartItem") 
                                 </a>
                             </li>
 
@@ -231,13 +234,12 @@
     @*<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647;"><i class="fa fa-angle-up"></i></a>*@
 
 </body>
-<div id="fb-root"></div>
-<script>
-(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 </html>
+<script>
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>

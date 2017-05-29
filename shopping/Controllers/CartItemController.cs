@@ -153,6 +153,7 @@ namespace shopping.Controllers
                 cus.customer_Email = acc.email;
                 db.Customers.Add(cus);
                 db.SaveChanges();
+                ord.customer_Id = cus.customer_Id;
             }
             else
             {
@@ -162,9 +163,11 @@ namespace shopping.Controllers
                 cus.customer_Email = Request.Form["customer_Email"];
                 db.Customers.Add(cus);
                 db.SaveChanges();
-            }
-                //add order
                 ord.customer_Id = cus.customer_Id;
+            }
+                
+                ord.account_Id = acc.id;
+                //add order
                 ord.order_Datetime = DateTime.Now;
                 ord.order_Status = 0;
                 db.Orders.Add(ord);

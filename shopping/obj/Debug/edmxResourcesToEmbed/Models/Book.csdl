@@ -177,6 +177,7 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="image_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="image_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="active" Type="Int32" />
   </EntityType>
   <Association Name="FK_AccountGroup_Account">
     <End Role="Account" Type="Self.Account" Multiplicity="0..1" />

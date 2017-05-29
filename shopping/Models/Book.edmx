@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="shopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="shopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="id" />
@@ -149,6 +149,7 @@ warning 6002: The table/view 'shop.dbo.Slider' does not have a primary key defin
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="image_Name" Type="ntext" />
           <Property Name="image_Description" Type="ntext" />
+          <Property Name="active" Type="int" />
         </EntityType>
         <EntityType Name="Sub_Category">
           <Key>
@@ -345,10 +346,10 @@ warning 6002: The table/view 'shop.dbo.Slider' does not have a primary key defin
             <DefiningQuery>SELECT 
     [Slider].[id] AS [id], 
     [Slider].[image_Name] AS [image_Name], 
-    [Slider].[image_Description] AS [image_Description]
+    [Slider].[image_Description] AS [image_Description], 
+    [Slider].[active] AS [active]
     FROM [dbo].[Slider] AS [Slider]</DefiningQuery>
           </EntitySet>
-
           <AssociationSet Name="FK_AccountGroup_Account" Association="Self.FK_AccountGroup_Account">
             <End Role="Account" EntitySet="Account" />
             <End Role="AccountGroup" EntitySet="AccountGroup" />
@@ -402,8 +403,7 @@ warning 6002: The table/view 'shop.dbo.Slider' does not have a primary key defin
             <End Role="Sub_Category" EntitySet="Sub_Category" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="shopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -584,6 +584,7 @@ warning 6002: The table/view 'shop.dbo.Slider' does not have a primary key defin
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="image_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="image_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="active" Type="Int32" />
         </EntityType>
         <Association Name="FK_AccountGroup_Account">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
@@ -956,6 +957,7 @@ warning 6002: The table/view 'shop.dbo.Slider' does not have a primary key defin
           <EntitySetMapping Name="Sliders">
             <EntityTypeMapping TypeName="shopModel.Slider">
               <MappingFragment StoreEntitySet="Slider">
+                <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="image_Name" ColumnName="image_Name" />
                 <ScalarProperty Name="image_Description" ColumnName="image_Description" />

@@ -171,7 +171,6 @@ E:\OneDrive - Nguyen Cuong\HocKy2Nam4\WebNC\webbansachnew\shopping\shopping\bin\
 E:\OneDrive - Nguyen Cuong\HocKy2Nam4\WebNC\webbansachnew\shopping\shopping\obj\Debug\shopping.csprojResolveAssemblyReference.cache
 E:\OneDrive - Nguyen Cuong\HocKy2Nam4\WebNC\webbansachnew\shopping\shopping\obj\Debug\shopping.dll
 E:\OneDrive - Nguyen Cuong\HocKy2Nam4\WebNC\webbansachnew\shopping\shopping\obj\Debug\shopping.pdb
-C:\Users\ngocp\Desktop\New folder\shopping\shopping\obj\Debug\shopping.csprojResolveAssemblyReference.cache
 C:\Users\ngocp\Desktop\New folder\shopping\shopping\bin\shopping.dll.config
 C:\Users\ngocp\Desktop\New folder\shopping\shopping\bin\shopping.dll
 C:\Users\ngocp\Desktop\New folder\shopping\shopping\bin\shopping.pdb
@@ -230,3 +229,4 @@ C:\Users\ngocp\Desktop\New folder\shopping\shopping\bin\Microsoft.Owin.Security.
 C:\Users\ngocp\Desktop\New folder\shopping\shopping\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\ngocp\Desktop\New folder\shopping\shopping\obj\Debug\shopping.dll
 C:\Users\ngocp\Desktop\New folder\shopping\shopping\obj\Debug\shopping.pdb
+C:\Users\ngocp\Desktop\New folder\shopping\shopping\obj\Debug\shopping.csprojResolveAssemblyReference.cache

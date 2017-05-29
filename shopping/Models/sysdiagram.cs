@@ -12,19 +12,12 @@ namespace shopping.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Customer
+    public partial class sysdiagram
     {
-        public Customer()
-        {
-            this.Orders = new HashSet<Order>();
-        }
-    
-        public int customer_Id { get; set; }
-        public string customer_Fullname { get; set; }
-        public string customer_Address { get; set; }
-        public string customer_Phone { get; set; }
-        public string customer_Email { get; set; }
-    
-        public virtual ICollection<Order> Orders { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

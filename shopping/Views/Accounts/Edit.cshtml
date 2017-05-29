@@ -3,28 +3,115 @@
     ViewBag.Title = "Chình sửa thông tin";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        $("#btnChangePassword").click(function (e) {
+            e.preventDefault();
+
+            var passold = $("#passold").val();
+            var passnew1 = $("#pass1").val();
+            var passnew2 = $("#pass2").val();
+            if (passnew1 == passnew2) {
+                $.ajax({
+                    url: "/Accounts/ChangePassword",
+                    data: { passold: passold, passnew: passnew1 },
+                    success: function (data) {
+                        if (data == true) {
+                            $("#thongbao").html("Đổi mật khẩu thành công").css("color", "green");
+                        } else {
+                            $("#thongbao").html("Mật khẩu củ không đúng").css("color", "red");
+                        }
+                    },
+                    error: function () {
+                        alert("erro");
+                    }
+
+                });
+            } else {
+                $("#thongbao").html("Mật khẩu không khớp").css("color", "red");
+            }
+            
+        });
+    });
+</script>
+@{
+    if (Session["Account"] != null)
+    { 
+
 <div class="col-sm-9">
     <h2 class="title text-center">Chỉnh sửa thông tin của bạn</h2>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Edit", "Accounts", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
             @Html.ValidationSummary(true)
             @Html.HiddenFor(model => model.id)
-
-            <div class="form-group">
-                <label class="control-label col-md-2">Tên tài khoản</label>
-                <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.accountName, new { @class = "form-control", @disabled ="true"})
-                    @Html.ValidationMessageFor(model => model.accountName)
-                </div>
-            </div>
             <div class="form-group">
                 <label class="control-label col-md-2">Mật khẩu</label>
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.password, new { @class="form-control",@type="password"})
-                    @Html.ValidationMessageFor(model => model.password)
+                    <div class="container form-control">
+
+                        <!-- Trigger the modal with a button -->
+                        <a href="#" data-toggle="modal" data-target="#myModal">Đổi mật khẩu</a>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Đổi mật khẩu</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4">Mật khẩu củ</label>
+                                                <div class="col-md-8">
+                                                    <input type="password" name="passold" id="passold" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4">Mật khẩu mới</label>
+                                                <div class="col-md-8">
+                                                    <input type="password" name="pass1" id="pass1" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4">Nhập lại mật khẩu mới</label>
+                                                <div class="col-md-8">
+                                                    <input type="password" name="pass2" id="pass2" class="form-control" />
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4"></label>
+                                                <div class="col-md-8">
+                                                    <p id="thongbao"></p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4"></label>
+                                                <div class="col-md-8">
+                                                    <input type="submit" class="btn btn-success" value="Xác Nhận" id="btnChangePassword" />
+                                                </div>
+                                               > 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
@@ -35,10 +122,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-md-2">Anh3 đại diện</label>
+                <label class="control-label col-md-2">Ảnh đại diện</label>
                 <div class="col-md-10">
                     @*@Html.EditorFor(model => model.imagePath)*@
-                    <input type="file" name="image_Acount" id="image_Acount" class="form-control"/>
+                    <input type="file" name="image_Account" id="image_Account" class="form-control" />
                     @Html.ValidationMessageFor(model => model.imagePath)
                 </div>
             </div>
@@ -81,4 +168,5 @@
         </div>
     }
 </div>
-
+        }
+}

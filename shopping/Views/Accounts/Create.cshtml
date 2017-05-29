@@ -14,8 +14,8 @@
                 data: { accountName: user },
                 success: function (data) {
                     if (data == false) {
-                        $('#error').html('Tên đã có người sử dụng');
-                    } else { $('#error').html('bạn có thể dụng tên này'); }
+                        $('#error').html('Tên đã có người sử dụng').css("color","red");
+                    } else { $('#error').html('Bạn có thể dụng tên này').css("color","green") }
                 }
             });
         });
@@ -23,7 +23,7 @@
 </script>
 <div class="col-sm-9">
     <h2 class="title text-center">Chỉnh sửa thông tin của bạn</h2>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Create", "Accounts", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <h2>Thêm người dùng</h2>
         @Html.AntiForgeryToken()
@@ -32,22 +32,24 @@
             <div class="form-group">
                 <label class="control-label col-md-2">Tên tài khoản</label>
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.accountName, new {@class="form-control" })
-                    <div id="error"></div>
+                    @Html.TextBoxFor(model => model.accountName, new { @class = "form-control" })
+                    <div id="error">
+
+                    </div>
                     @Html.ValidationMessageFor(model => model.accountName)
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-md-2">Mật khẩu</label>
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.password, new { @class="form-control",@type="password"})
+                    @Html.TextBoxFor(model => model.password, new { @class = "form-control", @type = "password" })
                     @Html.ValidationMessageFor(model => model.password)
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-md-2">Tên hiển thị</label>
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.fullName, new { @class="form-control"})
+                    @Html.TextBoxFor(model => model.fullName, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.fullName)
                 </div>
             </div>

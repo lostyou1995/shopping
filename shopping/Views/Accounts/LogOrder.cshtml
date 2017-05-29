@@ -1,0 +1,37 @@
+﻿@using shopping.Models
+@{
+    ViewBag.Title = "LogOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    if(Session["Account"]!=null)
+    { 
+<div class="col-sm-9">
+    <h2 class="title text-center">Lịch sử mua hàng</h2>
+    <table class="table table-striped">
+        <tr>
+            <td>Tên sách</td>
+            <td>Số lượng</td>
+            <td>Giá</td>
+            <td>Tổng tiền</td>
+            <td>Ngày đặt hàng</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+        <tr>
+
+            <td>
+                @item.Book.book_Title
+            </td>
+            <td>@item.orderdetail_Quantity</td>
+            <td>@String.Format("{0:0,0}", @item.orderdetail_Price)</td>
+            <td>@String.Format("{0:0,0}", @item.orderdetail_Total)</td>
+            <td>@item.Order.order_Datetime</td>
+        </tr>
+        }
+    </table>
+    </div>
+    }
+    
+    }
+
